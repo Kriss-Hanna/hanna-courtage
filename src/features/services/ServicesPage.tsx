@@ -4,7 +4,6 @@ import {
   Container,
   Typography,
   Grid,
-  Divider,
   useTheme,
   Button,
   Card,
@@ -14,7 +13,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { Check as CheckIcon, ArrowForward as ArrowForwardIcon } from "@mui/icons-material";
+import { Check as CheckIcon } from "@mui/icons-material";
 import { Link as RouterLink } from "react-router-dom";
 
 const ServicesPage = () => {
