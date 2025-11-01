@@ -21,9 +21,7 @@ export interface ServiceCardProps {
 
 // Interface pour les props du composant de formulaire de contact
 export interface ContactFormProps {
-  onSubmit: (data: import('../types').ContactFormData) => void;
-  loading?: boolean;
-  error?: string;
+  formSubmitEmail?: string;
 }
 
 // Interface pour les props du composant de bannière

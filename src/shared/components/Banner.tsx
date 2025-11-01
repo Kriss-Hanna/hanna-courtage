@@ -1,11 +1,12 @@
 import { Box, Typography, Button, Container, useTheme } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { BannerProps } from "../../core/interfaces";
+import { PLACEHOLDER_IMAGES } from "../../core/config";
 
 const Banner: React.FC<BannerProps> = ({
   title,
   subtitle,
-  backgroundImage = "/banner-background.jpg",
+  backgroundImage = PLACEHOLDER_IMAGES.banner,
   ctaText = "En savoir plus",
   ctaLink = "/contact",
   secondaryCtaText,

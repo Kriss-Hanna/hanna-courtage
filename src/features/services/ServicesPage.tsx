@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { Check as CheckIcon } from "@mui/icons-material";
 import { Link as RouterLink } from "react-router-dom";
+import { PLACEHOLDER_IMAGES } from "../../core/config";
 
 const ServicesPage = () => {
   const theme = useTheme();
@@ -106,7 +107,8 @@ const ServicesPage = () => {
                   lineHeight: 1.5,
                 }}
               >
-                Des solutions indépendantes pour sécuriser le présent, préparer l'avenir et accompagner chaque étape de ton parcours financier.
+                Des solutions indépendantes pour sécuriser le présent, préparer
+                l'avenir et accompagner chaque étape de ton parcours financier.
               </Typography>
             </Grid>
           </Grid>
@@ -145,14 +147,19 @@ const ServicesPage = () => {
                 variant="body1"
                 sx={{ mb: 3, fontSize: "1.1rem", lineHeight: 1.6 }}
               >
-                Protéger ton avenir et celui de tes proches, préparer ta retraite, optimiser ton épargne : c'est tout le sens de mon métier de courtière en assurances et conseillère en gestion de patrimoine.
+                Protéger ton avenir et celui de tes proches, préparer ta
+                retraite, optimiser ton épargne : c'est tout le sens de mon
+                métier de courtière en assurances et conseillère en gestion de
+                patrimoine.
               </Typography>
 
               <Typography
                 variant="body1"
                 sx={{ mb: 4, fontSize: "1.1rem", lineHeight: 1.6 }}
               >
-                Ensemble, nous construisons une stratégie claire, durable et alignée sur tes projets de vie, sans jamais sacrifier la transparence.
+                Ensemble, nous construisons une stratégie claire, durable et
+                alignée sur tes projets de vie, sans jamais sacrifier la
+                transparence.
               </Typography>
 
               <Grid container spacing={3}>
@@ -207,14 +214,15 @@ const ServicesPage = () => {
                   Mon rôle
                 </Typography>
                 <Typography variant="body2" sx={{ lineHeight: 1.6 }}>
-                  Te conseiller avec clarté, transparence et indépendance. Je sélectionne les solutions pour toi, pas pour un réseau.
+                  Te conseiller avec clarté, transparence et indépendance. Je
+                  sélectionne les solutions pour toi, pas pour un réseau.
                 </Typography>
               </Box>
             </Grid>
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
-                src="/services-intro.jpg"
+                src={PLACEHOLDER_IMAGES.servicesIntro}
                 alt="Stratégie patrimoniale"
                 sx={{
                   width: "100%",
@@ -231,7 +239,12 @@ const ServicesPage = () => {
       {/* Section coaching financier */}
       <Box id="coaching-financier" sx={{ py: 8, bgcolor: "#f8f9fa" }}>
         <Container maxWidth="lg">
-          <Grid container spacing={6} alignItems="center" direction={{ xs: "column", md: "row-reverse" }}>
+          <Grid
+            container
+            spacing={6}
+            alignItems="center"
+            direction={{ xs: "column", md: "row-reverse" }}
+          >
             <Grid item xs={12} md={6}>
               <Typography
                 variant="h2"
@@ -260,12 +273,18 @@ const ServicesPage = () => {
                 variant="body1"
                 sx={{ mb: 3, fontSize: "1.1rem", lineHeight: 1.6 }}
               >
-                Parce que l'argent n'est pas qu'une question de chiffres, je t'aide à en faire un allié de ton équilibre et de tes projets. L'objectif : reprendre la main sur ton budget et tes décisions.
+                Parce que l'argent n'est pas qu'une question de chiffres, je
+                t'aide à en faire un allié de ton équilibre et de tes projets.
+                L'objectif : reprendre la main sur ton budget et tes décisions.
               </Typography>
 
               <List>
                 {coachingHighlights.map((item) => (
-                  <ListItem key={item} disableGutters sx={{ alignItems: "flex-start" }}>
+                  <ListItem
+                    key={item}
+                    disableGutters
+                    sx={{ alignItems: "flex-start" }}
+                  >
                     <ListItemIcon sx={{ minWidth: 32, mt: "2px" }}>
                       <CheckIcon sx={{ color: theme.palette.secondary.main }} />
                     </ListItemIcon>
@@ -275,13 +294,14 @@ const ServicesPage = () => {
               </List>
 
               <Typography variant="body2" sx={{ mt: 2, fontStyle: "italic" }}>
-                Format : séances individuelles (visio ou présentiel), accompagnement sur 1 à 3 mois, toujours à ton rythme.
+                Format : séances individuelles (visio ou présentiel),
+                accompagnement sur 1 à 3 mois, toujours à ton rythme.
               </Typography>
             </Grid>
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
-                src="/services-coaching.jpg"
+                src={PLACEHOLDER_IMAGES.servicesCoaching}
                 alt="Coaching financier"
                 sx={{
                   width: "100%",
@@ -290,7 +310,13 @@ const ServicesPage = () => {
                   boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
                 }}
                 onError={(event: React.SyntheticEvent<HTMLImageElement>) => {
-                  event.currentTarget.src = "/services-intro.jpg";
+                  if (
+                    !event.currentTarget.src.includes(
+                      PLACEHOLDER_IMAGES.servicesIntro
+                    )
+                  ) {
+                    event.currentTarget.src = PLACEHOLDER_IMAGES.servicesIntro;
+                  }
                 }}
               />
             </Grid>
@@ -330,7 +356,9 @@ const ServicesPage = () => {
                 variant="body1"
                 sx={{ mb: 3, fontSize: "1.1rem", lineHeight: 1.6 }}
               >
-                Avant toute recommandation, nous réalisons un diagnostic complet de ta situation patrimoniale. Cette vision 360° permet d'aligner ton patrimoine sur tes projets et d'éclairer chaque décision.
+                Avant toute recommandation, nous réalisons un diagnostic complet
+                de ta situation patrimoniale. Cette vision 360° permet d'aligner
+                ton patrimoine sur tes projets et d'éclairer chaque décision.
               </Typography>
 
               <Grid container spacing={3}>
@@ -349,9 +377,14 @@ const ServicesPage = () => {
                       }}
                     >
                       <CardContent sx={{ p: 3 }}>
-                        <ListItem disableGutters sx={{ alignItems: "flex-start" }}>
+                        <ListItem
+                          disableGutters
+                          sx={{ alignItems: "flex-start" }}
+                        >
                           <ListItemIcon sx={{ minWidth: 32, mt: "2px" }}>
-                            <CheckIcon sx={{ color: theme.palette.secondary.main }} />
+                            <CheckIcon
+                              sx={{ color: theme.palette.secondary.main }}
+                            />
                           </ListItemIcon>
                           <ListItemText primary={item} />
                         </ListItem>
@@ -364,7 +397,7 @@ const ServicesPage = () => {
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
-                src="/vision-patrimoniale.jpg"
+                src={PLACEHOLDER_IMAGES.visionPatrimoniale}
                 alt="Vision globale"
                 sx={{
                   width: "100%",
@@ -373,7 +406,13 @@ const ServicesPage = () => {
                   boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
                 }}
                 onError={(event: React.SyntheticEvent<HTMLImageElement>) => {
-                  event.currentTarget.src = "/services-intro.jpg";
+                  if (
+                    !event.currentTarget.src.includes(
+                      PLACEHOLDER_IMAGES.servicesIntro
+                    )
+                  ) {
+                    event.currentTarget.src = PLACEHOLDER_IMAGES.servicesIntro;
+                  }
                 }}
               />
             </Grid>
@@ -404,7 +443,9 @@ const ServicesPage = () => {
                 Bientôt
               </Typography>
               <Typography variant="body1" sx={{ lineHeight: 1.6 }}>
-                En cours de certification AMF, j'élargirai prochainement mes services vers le conseil en investissement financier afin d'accompagner mes clients encore plus globalement.
+                En cours de certification AMF, j'élargirai prochainement mes
+                services vers le conseil en investissement financier afin
+                d'accompagner mes clients encore plus globalement.
               </Typography>
             </CardContent>
           </Card>
@@ -433,7 +474,8 @@ const ServicesPage = () => {
             variant="h6"
             sx={{ mb: 4, opacity: 0.9, fontWeight: 400 }}
           >
-            Réserve un rendez-vous gratuit pour faire le point et repartir avec des premières pistes concrètes.
+            Réserve un rendez-vous gratuit pour faire le point et repartir avec
+            des premières pistes concrètes.
           </Typography>
 
           <Button

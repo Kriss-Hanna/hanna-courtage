@@ -16,7 +16,6 @@ import {
   AccessTime as TimeIcon,
 } from "@mui/icons-material";
 import ContactForm from "../../shared/components/ContactForm";
-import { ContactFormData } from "../../core/types";
 import { CALENDLY_LINK } from "../../core/config";
 import CalendlyInlineWidget from "../../shared/components/CalendlyInlineWidget";
 
@@ -24,12 +23,6 @@ const ContactPage = () => {
   const theme = useTheme();
   const calendlyUrl = CALENDLY_LINK;
   const isCalendlyPlaceholder = calendlyUrl.includes("votre-lien");
-
-  const handleSubmit = (data: ContactFormData) => {
-    // Ici, vous implémenteriez la logique d'envoi du formulaire
-    console.log("Formulaire soumis:", data);
-    // Par exemple, appel API vers votre backend
-  };
 
   return (
     <Box>
@@ -76,7 +69,8 @@ const ContactPage = () => {
                   lineHeight: 1.5,
                 }}
               >
-                Chaque grand projet commence par une conversation. Faisons connaissance pour clarifier tes besoins et tes objectifs.
+                Chaque grand projet commence par une conversation. Faisons
+                connaissance pour clarifier tes besoins et tes objectifs.
               </Typography>
             </Grid>
           </Grid>
@@ -88,7 +82,7 @@ const ContactPage = () => {
         <Grid container spacing={6}>
           {/* Formulaire de contact */}
           <Grid item xs={12} md={7}>
-            <ContactForm onSubmit={handleSubmit} />
+            <ContactForm />
           </Grid>
 
           {/* Informations de contact */}
@@ -121,7 +115,9 @@ const ContactPage = () => {
                 variant="body1"
                 sx={{ mb: 4, fontSize: "1.1rem", lineHeight: 1.6 }}
               >
-                Choisis le canal qui te convient le mieux : message, appel, visio ou rencontre en présentiel. Je te réponds rapidement et avec bienveillance.
+                Choisis le canal qui te convient le mieux : message, appel,
+                visio ou rencontre en présentiel. Je te réponds rapidement et
+                avec bienveillance.
               </Typography>
             </Box>
 
@@ -340,7 +336,9 @@ const ContactPage = () => {
                   Premier échange offert
                 </Typography>
                 <Typography variant="body2" sx={{ lineHeight: 1.6 }}>
-                  Le premier rendez-vous est gratuit et sans engagement. Nous pouvons nous rencontrer en visio ou en présentiel selon tes disponibilités.
+                  Le premier rendez-vous est gratuit et sans engagement. Nous
+                  pouvons nous rencontrer en visio ou en présentiel selon tes
+                  disponibilités.
                 </Typography>
               </CardContent>
             </Card>
@@ -380,12 +378,15 @@ const ContactPage = () => {
               lineHeight: 1.6,
             }}
           >
-            Choisis le créneau qui te convient pour un échange en visio ou en présentiel. Une confirmation te parviendra immédiatement après la réservation.
+            Choisis le créneau qui te convient pour un échange en visio ou en
+            présentiel. Une confirmation te parviendra immédiatement après la
+            réservation.
           </Typography>
 
           {isCalendlyPlaceholder ? (
             <Alert severity="info" sx={{ mb: 4 }}>
-              Renseigne ton lien Calendly dans <code>src/core/config.ts</code> pour activer la prise de rendez-vous en ligne.
+              Renseigne ton lien Calendly dans <code>src/core/config.ts</code>{" "}
+              pour activer la prise de rendez-vous en ligne.
             </Alert>
           ) : (
             <CalendlyInlineWidget url={calendlyUrl} minHeight={780} />

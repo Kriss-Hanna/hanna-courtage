@@ -14,12 +14,9 @@ import {
 } from "@mui/material";
 import { ContactFormProps } from "../../core/interfaces";
 import { ContactFormData } from "../../core/types";
+import { FORM_SUBMIT_EMAIL } from "../../core/config";
 
-const ContactForm: React.FC<ContactFormProps> = ({
-  onSubmit,
-  loading = false,
-  error,
-}) => {
+const ContactForm: React.FC<ContactFormProps> = ({ formSubmitEmail }) => {
   const theme = useTheme();
   const [formData, setFormData] = useState<ContactFormData>({
     firstName: "",
@@ -34,6 +31,16 @@ const ContactForm: React.FC<ContactFormProps> = ({
     Partial<Record<keyof ContactFormData, string>>
   >({});
   const [success, setSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [humanConfirmed, setHumanConfirmed] = useState(false);
+  const [humanError, setHumanError] = useState<string | null>(null);
+  const [honeypot, setHoneypot] = useState("");
+
+  const submitEmail = (formSubmitEmail ?? FORM_SUBMIT_EMAIL).trim();
+  const formEndpoint = submitEmail
+    ? `https://formsubmit.co/ajax/${submitEmail}`
+    : "";
 
   const serviceOptions = [
     {
@@ -58,6 +65,20 @@ const ContactForm: React.FC<ContactFormProps> = ({
     if (formErrors[name as keyof ContactFormData]) {
       setFormErrors((prev) => ({ ...prev, [name]: "" }));
     }
+  };
+
+  const resetForm = () => {
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      message: "",
+      serviceInterest: "",
+      remoteMeeting: false,
+    });
+    setHumanConfirmed(false);
+    setHoneypot("");
   };
 
   const validateForm = (): boolean => {
@@ -93,31 +114,90 @@ const ContactForm: React.FC<ContactFormProps> = ({
     }
 
     setFormErrors(errors);
+    if (!humanConfirmed) {
+      setHumanError("Merci de confirmer que tu n'es pas un robot.");
+      isValid = false;
+    } else {
+      setHumanError(null);
+    }
+
     return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-    if (validateForm()) {
-      onSubmit(formData);
-      setSuccess(true);
+    if (!formEndpoint) {
+      setErrorMessage(
+        "L'adresse FormSubmit n'est pas configurée. Ajoute VITE_FORM_SUBMIT_EMAIL dans ton .env."
+      );
+      return;
+    }
 
-      // Réinitialiser le formulaire après soumission réussie
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        message: "",
-        serviceInterest: "",
-        remoteMeeting: false,
+    if (!validateForm()) {
+      return;
+    }
+
+    if (honeypot.trim().length > 0) {
+      return;
+    }
+
+    setLoading(true);
+    setErrorMessage(null);
+
+    const payload: Record<string, string> = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      phone: formData.phone,
+      message: formData.message,
+      remoteMeeting: formData.remoteMeeting ? "Oui" : "Non",
+      _replyto: formData.email,
+      _subject: "Nouvelle demande de contact - Hanna Courtage",
+      _template: "table",
+      _captcha: "false",
+      _honey: honeypot,
+    };
+
+    if (formData.serviceInterest) {
+      const serviceLabel = serviceOptions.find(
+        (option) => option.value === formData.serviceInterest
+      )?.label;
+      if (serviceLabel) {
+        payload.serviceInterest = serviceLabel;
+      }
+    }
+
+    try {
+      const response = await fetch(formEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
       });
 
-      // Masquer le message de succès après 5 secondes
+      if (!response.ok) {
+        throw new Error("Impossible d'envoyer ton message pour le moment.");
+      }
+
+      await response.json().catch(() => null);
+
+      setSuccess(true);
+      resetForm();
+
       setTimeout(() => {
         setSuccess(false);
-      }, 5000);
+      }, 6000);
+    } catch (submissionError) {
+      setErrorMessage(
+        submissionError instanceof Error
+          ? submissionError.message
+          : "Une erreur est survenue pendant l'envoi."
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -132,6 +212,17 @@ const ContactForm: React.FC<ContactFormProps> = ({
         boxShadow: "0 8px 32px rgba(0, 0, 0, 0.08)",
       }}
     >
+      <input
+        type="text"
+        name="_honey"
+        value={honeypot}
+        onChange={(event) => setHoneypot(event.target.value)}
+        style={{ display: "none" }}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
+
       <Typography
         variant="h4"
         component="h2"
@@ -153,19 +244,25 @@ const ContactForm: React.FC<ContactFormProps> = ({
           },
         }}
       >
-        Contactez-nous
+        Contacte-moi
       </Typography>
 
-      {success && (
-        <Alert severity="success" sx={{ mb: 3 }}>
-          Votre message a été envoyé avec succès. Nous vous contacterons
-          bientôt.
+      {!submitEmail && (
+        <Alert severity="warning" sx={{ mb: 3 }}>
+          Configure l'adresse email de réception via la variable
+          <code> VITE_FORM_SUBMIT_EMAIL </code>.
         </Alert>
       )}
 
-      {error && (
+      {success && (
+        <Alert severity="success" sx={{ mb: 3 }}>
+          Ton message est bien parti. Je te recontacte rapidement.
+        </Alert>
+      )}
+
+      {errorMessage && (
         <Alert severity="error" sx={{ mb: 3 }}>
-          {error}
+          {errorMessage}
         </Alert>
       )}
 
@@ -270,8 +367,30 @@ const ContactForm: React.FC<ContactFormProps> = ({
             error={!!formErrors.message}
             helperText={formErrors.message}
             required
-            sx={{ mb: 3 }}
+            sx={{ mb: 2 }}
           />
+        </Grid>
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                color="primary"
+                checked={humanConfirmed}
+                onChange={(event) => {
+                  setHumanConfirmed(event.target.checked);
+                  if (event.target.checked) {
+                    setHumanError(null);
+                  }
+                }}
+              />
+            }
+            label="Je confirme ne pas être un robot"
+          />
+          {humanError && (
+            <Typography variant="caption" color="error" sx={{ ml: 1 }}>
+              {humanError}
+            </Typography>
+          )}
         </Grid>
         <Grid item xs={12}>
           <Button
@@ -280,7 +399,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
             color="primary"
             size="large"
             fullWidth
-            disabled={loading}
+            disabled={loading || !formEndpoint}
             sx={{
               py: 1.5,
               fontWeight: 600,

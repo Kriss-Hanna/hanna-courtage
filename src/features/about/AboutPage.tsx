@@ -19,6 +19,7 @@ import {
   Handshake as HandshakeIcon,
 } from "@mui/icons-material";
 import { Link as RouterLink } from "react-router-dom";
+import { PLACEHOLDER_IMAGES } from "../../core/config";
 
 const AboutPage = () => {
   const theme = useTheme();
@@ -93,7 +94,8 @@ const AboutPage = () => {
                   lineHeight: 1.5,
                 }}
               >
-                Comprendre, protéger, construire : trois mots pour guider chaque accompagnement et rendre les décisions financières accessibles.
+                Comprendre, protéger, construire : trois mots pour guider chaque
+                accompagnement et rendre les décisions financières accessibles.
               </Typography>
             </Grid>
           </Grid>
@@ -107,13 +109,22 @@ const AboutPage = () => {
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
-                src="/about-history.jpg"
+                src={PLACEHOLDER_IMAGES.aboutHistory}
                 alt="Accompagnement patrimonial"
                 sx={{
                   width: "100%",
                   height: "auto",
                   borderRadius: 2,
                   boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+                }}
+                onError={(event: React.SyntheticEvent<HTMLImageElement>) => {
+                  if (
+                    !event.currentTarget.src.includes(
+                      PLACEHOLDER_IMAGES.servicesIntro
+                    )
+                  ) {
+                    event.currentTarget.src = PLACEHOLDER_IMAGES.servicesIntro;
+                  }
                 }}
               />
             </Grid>
@@ -151,21 +162,28 @@ const AboutPage = () => {
                 variant="body1"
                 sx={{ mb: 3, fontSize: "1.1rem", lineHeight: 1.6 }}
               >
-                Depuis plus de 5 ans, j'accompagne les particuliers et les professionnels qui souhaitent clarifier leurs décisions patrimoniales. Mon objectif : transformer les sujets financiers en conversations simples, utiles et alignées avec tes projets de vie.
+                Depuis plus de 5 ans, j'accompagne les particuliers et les
+                professionnels qui souhaitent clarifier leurs décisions
+                patrimoniales. Mon objectif : transformer les sujets financiers
+                en conversations simples, utiles et alignées avec tes projets de
+                vie.
               </Typography>
 
               <Typography
                 variant="body1"
                 sx={{ mb: 3, fontSize: "1.1rem", lineHeight: 1.6 }}
               >
-                En tant que courtière membre du réseau 360 Courtage, je bénéficie d'un large panel de partenaires pour sélectionner, en toute indépendance, les solutions les plus pertinentes pour toi.
+                En tant que courtière membre du réseau 360 Courtage, je
+                bénéficie d'un large panel de partenaires pour sélectionner, en
+                toute indépendance, les solutions les plus pertinentes pour toi.
               </Typography>
 
               <Typography
                 variant="body1"
                 sx={{ fontSize: "1.1rem", lineHeight: 1.6 }}
               >
-                Ma conviction est simple : un bon conseil commence par l'écoute, se nourrit de pédagogie et se construit sur la confiance.
+                Ma conviction est simple : un bon conseil commence par l'écoute,
+                se nourrit de pédagogie et se construit sur la confiance.
               </Typography>
             </Grid>
           </Grid>
@@ -221,7 +239,8 @@ const AboutPage = () => {
                 color: theme.palette.text.secondary,
               }}
             >
-              Un accompagnement pédagogique, bienveillant et actionnable à chaque étape de ton projet.
+              Un accompagnement pédagogique, bienveillant et actionnable à
+              chaque étape de ton projet.
             </Typography>
           </Box>
 
@@ -328,7 +347,10 @@ const AboutPage = () => {
                     </Typography>
 
                     <List sx={{ mt: 3 }}>
-                      <ListItem disableGutters sx={{ alignItems: "flex-start" }}>
+                      <ListItem
+                        disableGutters
+                        sx={{ alignItems: "flex-start" }}
+                      >
                         <ListItemIcon sx={{ mt: "2px" }}>
                           <CheckCircleIcon
                             sx={{ color: theme.palette.secondary.main }}
@@ -344,7 +366,10 @@ const AboutPage = () => {
                           }
                         />
                       </ListItem>
-                      <ListItem disableGutters sx={{ alignItems: "flex-start" }}>
+                      <ListItem
+                        disableGutters
+                        sx={{ alignItems: "flex-start" }}
+                      >
                         <ListItemIcon sx={{ mt: "2px" }}>
                           <CheckCircleIcon
                             sx={{ color: theme.palette.secondary.main }}
@@ -391,7 +416,11 @@ const AboutPage = () => {
               </Typography>
 
               <Typography variant="body1" sx={{ lineHeight: 1.6 }}>
-                L'ABC DU PATRIMOINE s'appuie sur le réseau national 360 Courtage pour élargir ton champ des possibles : solutions d'assurance innovantes, partenaires de confiance et outils digitaux performants. Cette force collective nourrit un accompagnement sur mesure, centré sur tes priorités.
+                L'ABC DU PATRIMOINE s'appuie sur le réseau national 360 Courtage
+                pour élargir ton champ des possibles : solutions d'assurance
+                innovantes, partenaires de confiance et outils digitaux
+                performants. Cette force collective nourrit un accompagnement
+                sur mesure, centré sur tes priorités.
               </Typography>
             </CardContent>
           </Card>
@@ -420,7 +449,8 @@ const AboutPage = () => {
               mb: 4,
             }}
           >
-            Faisons le point sur ta situation et dessinons ensemble la prochaine étape de ton patrimoine.
+            Faisons le point sur ta situation et dessinons ensemble la prochaine
+            étape de ton patrimoine.
           </Typography>
 
           <Button

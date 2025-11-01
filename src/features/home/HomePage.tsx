@@ -19,6 +19,7 @@ import {
 import { Link as RouterLink } from "react-router-dom";
 import Banner from "../../shared/components/Banner";
 import ServiceCard from "../../shared/components/ServiceCard";
+import { PLACEHOLDER_IMAGES } from "../../core/config";
 
 const HomePage = () => {
   const theme = useTheme();
@@ -85,7 +86,7 @@ const HomePage = () => {
       <Banner
         title="L'ABC DU PATRIMOINE — Comprendre, protéger, construire"
         subtitle="Parce que chaque situation patrimoniale est unique, je t'accompagne à clarifier tes décisions et à protéger les projets qui comptent pour toi."
-        backgroundImage="/banner-background.jpg"
+        backgroundImage={PLACEHOLDER_IMAGES.banner}
         ctaText="Faire le point sur ma situation"
         ctaLink="/contact"
         secondaryCtaText="Prendre rendez-vous"
@@ -121,7 +122,9 @@ const HomePage = () => {
                 mb: 2,
               }}
             >
-              Depuis plus de 5 ans, j'accompagne particuliers et professionnels avec une approche indépendante, pédagogique et profondément humaine.
+              Depuis plus de 5 ans, j'accompagne particuliers et professionnels
+              avec une approche indépendante, pédagogique et profondément
+              humaine.
             </Typography>
           </Box>
 
@@ -165,7 +168,7 @@ const HomePage = () => {
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
-                src="/why-choose-us.jpg"
+                src={PLACEHOLDER_IMAGES.whyChooseUs}
                 alt="Accompagnement patrimonial personnalisé"
                 sx={{
                   width: "100%",
@@ -203,7 +206,10 @@ const HomePage = () => {
                 variant="body1"
                 sx={{ mb: 4, fontSize: "1.1rem", lineHeight: 1.6 }}
               >
-                Un accompagnement serein est un accompagnement qui commence par l'écoute. Je prends le temps de comprendre ton histoire, tes projets et tes contraintes pour bâtir une feuille de route lucide et durable.
+                Un accompagnement serein est un accompagnement qui commence par
+                l'écoute. Je prends le temps de comprendre ton histoire, tes
+                projets et tes contraintes pour bâtir une feuille de route
+                lucide et durable.
               </Typography>
 
               <Box sx={{ mb: 2 }}>
@@ -235,7 +241,8 @@ const HomePage = () => {
                   Écoute et pédagogie
                 </Typography>
                 <Typography variant="body1" sx={{ ml: 7 }}>
-                  Je vulgarise chaque solution pour que tu décides en toute autonomie, sans jargon et sans pression.
+                  Je vulgarise chaque solution pour que tu décides en toute
+                  autonomie, sans jargon et sans pression.
                 </Typography>
               </Box>
 
@@ -268,7 +275,9 @@ const HomePage = () => {
                   Indépendance totale
                 </Typography>
                 <Typography variant="body1" sx={{ ml: 7 }}>
-                  Membre du réseau 360 Courtage, je sélectionne librement les partenaires qui servent au mieux tes intérêts, jamais l'inverse.
+                  Membre du réseau 360 Courtage, je sélectionne librement les
+                  partenaires qui servent au mieux tes intérêts, jamais
+                  l'inverse.
                 </Typography>
               </Box>
 
@@ -301,7 +310,8 @@ const HomePage = () => {
                   Transparence et suivi
                 </Typography>
                 <Typography variant="body1" sx={{ ml: 7 }}>
-                  Chaque recommandation s'accompagne d'un plan d'action clair et d'un suivi régulier pour ajuster le cap si nécessaire.
+                  Chaque recommandation s'accompagne d'un plan d'action clair et
+                  d'un suivi régulier pour ajuster le cap si nécessaire.
                 </Typography>
               </Box>
 
@@ -327,7 +337,9 @@ const HomePage = () => {
                   Bientôt
                 </Typography>
                 <Typography variant="body2" sx={{ lineHeight: 1.6 }}>
-                  En cours de certification AMF, j'élargirai prochainement mes services vers le conseil en investissement financier pour t'offrir un accompagnement encore plus global.
+                  En cours de certification AMF, j'élargirai prochainement mes
+                  services vers le conseil en investissement financier pour
+                  t'offrir un accompagnement encore plus global.
                 </Typography>
               </Box>
 
@@ -379,7 +391,8 @@ const HomePage = () => {
                 mb: 2,
               }}
             >
-              Des accompagnements sur-mesure qui redonnent confiance et visibilité
+              Des accompagnements sur-mesure qui redonnent confiance et
+              visibilité
             </Typography>
           </Box>
 
@@ -434,14 +447,6 @@ const HomePage = () => {
                         mb: 2,
                         fontStyle: "italic",
                         position: "relative",
-                        "&::before": {
-                          content: '"""',
-                          fontSize: "3rem",
-                          color: `${theme.palette.primary.main}20`,
-                          position: "absolute",
-                          top: -20,
-                          left: -10,
-                        },
                       }}
                     >
                       {testimonial.content}
@@ -476,7 +481,8 @@ const HomePage = () => {
             variant="h6"
             sx={{ mb: 4, opacity: 0.9, fontWeight: 400 }}
           >
-            Profite d'un premier échange gratuit et sans engagement pour clarifier ta situation.
+            Profite d'un premier échange gratuit et sans engagement pour
+            clarifier ta situation.
           </Typography>
 
           <Button
