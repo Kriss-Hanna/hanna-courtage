@@ -41,6 +41,7 @@ export type ContactFormData = {
   phone: string;
   message: string;
   serviceInterest?: string;
+  remoteMeeting?: boolean;
 };
 
 // Type pour les données de connexion admin
@@ -60,4 +61,4 @@ export type ContactMessage = {
   serviceInterest?: string;
   date: string;
   read: boolean;
-}; 
+};

@@ -29,7 +29,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import { ContactMessage } from "../../core/types";
 
-// Données de démonstration pour les messages
 const DEMO_MESSAGES: ContactMessage[] = [
   {
     id: "1",
@@ -104,17 +103,14 @@ const AdminDashboardPage: React.FC = () => {
   const [openDialog, setOpenDialog] = useState(false);
 
   useEffect(() => {
-    // Vérifier si l'utilisateur est connecté
     const isLoggedIn = localStorage.getItem("adminLoggedIn") === "true";
     if (!isLoggedIn) {
       navigate("/admin");
       return;
     }
 
-    // Simuler le chargement des données depuis une API
     const fetchMessages = async () => {
       try {
-        // Simulation d'un délai réseau
         await new Promise((resolve) => setTimeout(resolve, 1000));
         setMessages(DEMO_MESSAGES);
       } catch (err) {
@@ -132,7 +128,6 @@ const AdminDashboardPage: React.FC = () => {
   }, [navigate]);
 
   const handleViewMessage = (message: ContactMessage) => {
-    // Marquer le message comme lu
     setMessages((prev) =>
       prev.map((m) => (m.id === message.id ? { ...m, read: true } : m))
     );
@@ -271,7 +266,7 @@ const AdminDashboardPage: React.FC = () => {
         </TableContainer>
       </Paper>
 
-      {/* Dialogue de détail du message */}
+
       <Dialog
         open={openDialog}
         onClose={handleCloseDialog}

@@ -33,6 +33,8 @@ export interface BannerProps {
   backgroundImage?: string;
   ctaText?: string;
   ctaLink?: string;
+  secondaryCtaText?: string;
+  secondaryCtaLink?: string;
 }
 
 // Interface pour les props du composant de témoignage
@@ -62,4 +64,4 @@ export interface MessageTableProps {
 export interface MessageDetailProps {
   message: import('../types').ContactMessage;
   onBack: () => void;
-} 
+}

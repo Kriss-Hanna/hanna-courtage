@@ -8,6 +8,8 @@ const Banner: React.FC<BannerProps> = ({
   backgroundImage = "/banner-background.jpg",
   ctaText = "En savoir plus",
   ctaLink = "/contact",
+  secondaryCtaText,
+  secondaryCtaLink,
 }) => {
   const theme = useTheme();
 
@@ -85,28 +87,62 @@ const Banner: React.FC<BannerProps> = ({
             </Typography>
           )}
 
-          <Button
-            variant="contained"
-            color="secondary"
-            size="large"
-            component={RouterLink}
-            to={ctaLink}
+          <Box
             sx={{
-              py: 1.5,
-              px: 4,
-              fontSize: "1.1rem",
-              fontWeight: 600,
-              borderRadius: "30px",
-              boxShadow: "0 4px 14px rgba(0,0,0,0.2)",
-              "&:hover": {
-                transform: "translateY(-2px)",
-                boxShadow: "0 6px 20px rgba(0,0,0,0.3)",
-              },
-              transition: "all 0.3s ease",
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 2,
             }}
           >
-            {ctaText}
-          </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              size="large"
+              component={RouterLink}
+              to={ctaLink}
+              sx={{
+                py: 1.5,
+                px: 4,
+                fontSize: "1.1rem",
+                fontWeight: 600,
+                borderRadius: "30px",
+                boxShadow: "0 4px 14px rgba(0,0,0,0.2)",
+                "&:hover": {
+                  transform: "translateY(-2px)",
+                  boxShadow: "0 6px 20px rgba(0,0,0,0.3)",
+                },
+                transition: "all 0.3s ease",
+              }}
+            >
+              {ctaText}
+            </Button>
+
+            {secondaryCtaText && (
+              <Button
+                variant="outlined"
+                color="inherit"
+                size="large"
+                component={RouterLink}
+                to={secondaryCtaLink || ctaLink}
+                sx={{
+                  py: 1.5,
+                  px: 4,
+                  fontSize: "1.1rem",
+                  fontWeight: 600,
+                  borderRadius: "30px",
+                  borderColor: "rgba(255,255,255,0.8)",
+                  color: "white",
+                  "&:hover": {
+                    borderColor: "white",
+                    backgroundColor: "rgba(255,255,255,0.12)",
+                  },
+                  transition: "all 0.3s ease",
+                }}
+              >
+                {secondaryCtaText}
+              </Button>
+            )}
+          </Box>
         </Box>
       </Container>
     </Box>

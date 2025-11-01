@@ -5,53 +5,46 @@ import {
   Grid,
   Card,
   CardContent,
-  CardMedia,
   Divider,
   useTheme,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
+  Button,
 } from "@mui/material";
 import {
   CheckCircle as CheckCircleIcon,
   Timeline as TimelineIcon,
-  Groups as GroupsIcon,
   Handshake as HandshakeIcon,
 } from "@mui/icons-material";
+import { Link as RouterLink } from "react-router-dom";
 
 const AboutPage = () => {
   const theme = useTheme();
 
-  // Données de l'équipe
-  const teamMembers = [
+  const methodSteps = [
+    "Écoute & découverte de tes objectifs",
+    "Analyse personnalisée de ta situation",
+    "Recommandations claires et adaptées",
+    "Mise en place & suivi dans la durée",
+  ];
+
+  const values = [
     {
-      id: "1",
-      name: "Marie Dupont",
-      position: "Directrice Générale",
-      bio: "Avec plus de 15 ans d'expérience dans le secteur de l'assurance, Marie dirige Hanna Courtage avec passion et expertise.",
-      photoUrl: "/team-member-1.jpg",
+      title: "Comprendre",
+      description:
+        "Chaque situation patrimoniale est unique. Je prends le temps de traduire la complexité en décisions simples et actionnables.",
     },
     {
-      id: "2",
-      name: "Jean Martin",
-      position: "Responsable Commercial",
-      bio: "Jean apporte son expertise en développement commercial et relations clients pour offrir le meilleur service à nos assurés.",
-      photoUrl: "/team-member-2.jpg",
+      title: "Protéger",
+      description:
+        "Je sécurise les personnes et les projets qui comptent pour toi, avec des solutions indépendantes et durables.",
     },
     {
-      id: "3",
-      name: "Sophie Bernard",
-      position: "Experte en Assurance Auto",
-      bio: "Spécialiste des assurances automobiles, Sophie trouve les meilleures solutions adaptées à chaque profil de conducteur.",
-      photoUrl: "/team-member-3.jpg",
-    },
-    {
-      id: "4",
-      name: "Thomas Leroy",
-      position: "Expert en Assurance Habitation",
-      bio: "Thomas accompagne nos clients dans la protection de leur logement avec des solutions sur mesure et compétitives.",
-      photoUrl: "/team-member-4.jpg",
+      title: "Construire",
+      description:
+        "Nous élaborons ensemble une stratégie évolutive, en cohérence avec tes aspirations de vie et ton rythme.",
     },
   ];
 
@@ -79,7 +72,7 @@ const AboutPage = () => {
       >
         <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
           <Grid container spacing={4} alignItems="center">
-            <Grid item xs={12} md={7}>
+            <Grid item xs={12} md={8}>
               <Typography
                 variant="h1"
                 component="h1"
@@ -89,7 +82,7 @@ const AboutPage = () => {
                   fontSize: { xs: "2.5rem", md: "3.5rem" },
                 }}
               >
-                À Propos de Hanna Courtage
+                Françoise HANNA — Une approche humaine du conseil patrimonial
               </Typography>
               <Typography
                 variant="h5"
@@ -100,15 +93,14 @@ const AboutPage = () => {
                   lineHeight: 1.5,
                 }}
               >
-                Votre partenaire de confiance pour toutes vos assurances depuis
-                2010
+                Comprendre, protéger, construire : trois mots pour guider chaque accompagnement et rendre les décisions financières accessibles.
               </Typography>
             </Grid>
           </Grid>
         </Container>
       </Box>
 
-      {/* Section Notre Histoire */}
+      {/* Section parcours */}
       <Box sx={{ py: 8 }}>
         <Container maxWidth="lg">
           <Grid container spacing={6} alignItems="center">
@@ -116,7 +108,7 @@ const AboutPage = () => {
               <Box
                 component="img"
                 src="/about-history.jpg"
-                alt="Notre Histoire"
+                alt="Accompagnement patrimonial"
                 sx={{
                   width: "100%",
                   height: "auto",
@@ -142,7 +134,7 @@ const AboutPage = () => {
                     color: theme.palette.primary.main,
                   }}
                 >
-                  Notre Histoire
+                  Mon parcours
                 </Typography>
               </Box>
 
@@ -159,39 +151,28 @@ const AboutPage = () => {
                 variant="body1"
                 sx={{ mb: 3, fontSize: "1.1rem", lineHeight: 1.6 }}
               >
-                Fondée en 2010 par Marie Dupont, Hanna Courtage est née d'une
-                vision simple : rendre l'assurance plus accessible et
-                transparente pour tous. Après avoir travaillé pendant des années
-                dans de grandes compagnies d'assurance, Marie a constaté que de
-                nombreux clients se sentaient perdus face à la complexité des
-                contrats et des options disponibles.
+                Depuis plus de 5 ans, j'accompagne les particuliers et les professionnels qui souhaitent clarifier leurs décisions patrimoniales. Mon objectif : transformer les sujets financiers en conversations simples, utiles et alignées avec tes projets de vie.
               </Typography>
 
               <Typography
                 variant="body1"
                 sx={{ mb: 3, fontSize: "1.1rem", lineHeight: 1.6 }}
               >
-                C'est ainsi qu'est née Hanna Courtage, avec la mission
-                d'accompagner chaque client dans la recherche de la solution
-                d'assurance la plus adaptée à ses besoins spécifiques, en toute
-                transparence et avec un service personnalisé.
+                En tant que courtière membre du réseau 360 Courtage, je bénéficie d'un large panel de partenaires pour sélectionner, en toute indépendance, les solutions les plus pertinentes pour toi.
               </Typography>
 
               <Typography
                 variant="body1"
                 sx={{ fontSize: "1.1rem", lineHeight: 1.6 }}
               >
-                Aujourd'hui, notre équipe de professionnels passionnés continue
-                de porter cette vision, en mettant l'humain au cœur de notre
-                approche et en nous adaptant constamment aux évolutions du
-                marché pour offrir les meilleures solutions à nos clients.
+                Ma conviction est simple : un bon conseil commence par l'écoute, se nourrit de pédagogie et se construit sur la confiance.
               </Typography>
             </Grid>
           </Grid>
         </Container>
       </Box>
 
-      {/* Section Nos Valeurs */}
+      {/* Section méthode */}
       <Box sx={{ py: 8, bgcolor: "#f8f9fa" }}>
         <Container maxWidth="lg">
           <Box sx={{ textAlign: "center", mb: 6 }}>
@@ -218,7 +199,7 @@ const AboutPage = () => {
                   color: theme.palette.primary.main,
                 }}
               >
-                Nos Valeurs
+                Une méthode claire en 4 étapes
               </Typography>
             </Box>
 
@@ -235,289 +216,92 @@ const AboutPage = () => {
             <Typography
               variant="h5"
               sx={{
-                maxWidth: 700,
+                maxWidth: 720,
                 mx: "auto",
                 color: theme.palette.text.secondary,
-                mb: 5,
               }}
             >
-              Les principes qui guident nos actions au quotidien
+              Un accompagnement pédagogique, bienveillant et actionnable à chaque étape de ton projet.
             </Typography>
           </Box>
 
-          <Grid container spacing={4}>
-            <Grid item xs={12} md={4}>
-              <Card
-                sx={{
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  borderRadius: 2,
-                  boxShadow: "0 8px 24px rgba(0,0,0,0.05)",
-                  transition: "all 0.3s ease",
-                  "&:hover": {
-                    transform: "translateY(-8px)",
-                    boxShadow: "0 16px 32px rgba(0,0,0,0.1)",
-                  },
-                }}
-              >
-                <CardContent sx={{ p: 4, flexGrow: 1 }}>
-                  <Typography
-                    variant="h4"
-                    component="h3"
-                    sx={{
-                      fontWeight: 600,
-                      mb: 2,
-                      color: theme.palette.primary.main,
-                      textAlign: "center",
-                    }}
-                  >
-                    Transparence
-                  </Typography>
+          <Grid container spacing={4} justifyContent="center">
+            {methodSteps.map((step, index) => (
+              <Grid item xs={12} md={6} key={step}>
+                <Card
+                  sx={{
+                    height: "100%",
+                    borderRadius: 2,
+                    boxShadow: "0 8px 24px rgba(0,0,0,0.05)",
+                  }}
+                >
+                  <CardContent sx={{ p: 4 }}>
+                    <Typography
+                      variant="h5"
+                      sx={{
+                        fontWeight: 600,
+                        color: theme.palette.primary.main,
+                        mb: 2,
+                      }}
+                    >
+                      {index + 1}. {step}
+                    </Typography>
 
-                  <Typography
-                    variant="body1"
-                    sx={{ mb: 3, textAlign: "center" }}
-                  >
-                    Nous croyons en une communication claire et honnête. Nous
-                    expliquons les termes des contrats en langage simple et nous
-                    assurons que nos clients comprennent parfaitement ce pour
-                    quoi ils paient.
-                  </Typography>
-
-                  <List>
-                    <ListItem>
-                      <ListItemIcon>
-                        <CheckCircleIcon
-                          sx={{ color: theme.palette.secondary.main }}
-                        />
-                      </ListItemIcon>
-                      <ListItemText primary="Information claire et précise" />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemIcon>
-                        <CheckCircleIcon
-                          sx={{ color: theme.palette.secondary.main }}
-                        />
-                      </ListItemIcon>
-                      <ListItemText primary="Pas de frais cachés" />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemIcon>
-                        <CheckCircleIcon
-                          sx={{ color: theme.palette.secondary.main }}
-                        />
-                      </ListItemIcon>
-                      <ListItemText primary="Explication détaillée des contrats" />
-                    </ListItem>
-                  </List>
-                </CardContent>
-              </Card>
-            </Grid>
-
-            <Grid item xs={12} md={4}>
-              <Card
-                sx={{
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  borderRadius: 2,
-                  boxShadow: "0 8px 24px rgba(0,0,0,0.05)",
-                  transition: "all 0.3s ease",
-                  "&:hover": {
-                    transform: "translateY(-8px)",
-                    boxShadow: "0 16px 32px rgba(0,0,0,0.1)",
-                  },
-                }}
-              >
-                <CardContent sx={{ p: 4, flexGrow: 1 }}>
-                  <Typography
-                    variant="h4"
-                    component="h3"
-                    sx={{
-                      fontWeight: 600,
-                      mb: 2,
-                      color: theme.palette.primary.main,
-                      textAlign: "center",
-                    }}
-                  >
-                    Excellence
-                  </Typography>
-
-                  <Typography
-                    variant="body1"
-                    sx={{ mb: 3, textAlign: "center" }}
-                  >
-                    Nous visons l'excellence dans tout ce que nous faisons.
-                    Notre équipe se forme continuellement pour offrir les
-                    meilleurs conseils et services à nos clients.
-                  </Typography>
-
-                  <List>
-                    <ListItem>
-                      <ListItemIcon>
-                        <CheckCircleIcon
-                          sx={{ color: theme.palette.secondary.main }}
-                        />
-                      </ListItemIcon>
-                      <ListItemText primary="Formation continue" />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemIcon>
-                        <CheckCircleIcon
-                          sx={{ color: theme.palette.secondary.main }}
-                        />
-                      </ListItemIcon>
-                      <ListItemText primary="Recherche des meilleures offres" />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemIcon>
-                        <CheckCircleIcon
-                          sx={{ color: theme.palette.secondary.main }}
-                        />
-                      </ListItemIcon>
-                      <ListItemText primary="Service client réactif" />
-                    </ListItem>
-                  </List>
-                </CardContent>
-              </Card>
-            </Grid>
-
-            <Grid item xs={12} md={4}>
-              <Card
-                sx={{
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  borderRadius: 2,
-                  boxShadow: "0 8px 24px rgba(0,0,0,0.05)",
-                  transition: "all 0.3s ease",
-                  "&:hover": {
-                    transform: "translateY(-8px)",
-                    boxShadow: "0 16px 32px rgba(0,0,0,0.1)",
-                  },
-                }}
-              >
-                <CardContent sx={{ p: 4, flexGrow: 1 }}>
-                  <Typography
-                    variant="h4"
-                    component="h3"
-                    sx={{
-                      fontWeight: 600,
-                      mb: 2,
-                      color: theme.palette.primary.main,
-                      textAlign: "center",
-                    }}
-                  >
-                    Engagement
-                  </Typography>
-
-                  <Typography
-                    variant="body1"
-                    sx={{ mb: 3, textAlign: "center" }}
-                  >
-                    Nous nous engageons pleinement auprès de nos clients, en les
-                    accompagnant à chaque étape de leur parcours d'assurance, de
-                    la souscription à la gestion des sinistres.
-                  </Typography>
-
-                  <List>
-                    <ListItem>
-                      <ListItemIcon>
-                        <CheckCircleIcon
-                          sx={{ color: theme.palette.secondary.main }}
-                        />
-                      </ListItemIcon>
-                      <ListItemText primary="Suivi personnalisé" />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemIcon>
-                        <CheckCircleIcon
-                          sx={{ color: theme.palette.secondary.main }}
-                        />
-                      </ListItemIcon>
-                      <ListItemText primary="Assistance en cas de sinistre" />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemIcon>
-                        <CheckCircleIcon
-                          sx={{ color: theme.palette.secondary.main }}
-                        />
-                      </ListItemIcon>
-                      <ListItemText primary="Révision régulière des contrats" />
-                    </ListItem>
-                  </List>
-                </CardContent>
-              </Card>
-            </Grid>
+                    <Typography variant="body1" sx={{ lineHeight: 1.6 }}>
+                      {index === 0 &&
+                        "Nous prenons le temps d'échanger pour poser les bases de ta situation, tes besoins et tes envies."}
+                      {index === 1 &&
+                        "Je réalise un diagnostic précis de tes contrats, de ton budget et de ton patrimoine pour identifier les leviers d'optimisation."}
+                      {index === 2 &&
+                        "Tu reçois une feuille de route claire détaillant les solutions possibles, leurs impacts et les priorités à court et long terme."}
+                      {index === 3 &&
+                        "Je t'accompagne dans les démarches, puis nous planifions des points réguliers pour ajuster la stratégie si besoin."}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
           </Grid>
         </Container>
       </Box>
 
-      {/* Section Notre Équipe */}
+      {/* Section valeurs */}
       <Box sx={{ py: 8 }}>
         <Container maxWidth="lg">
           <Box sx={{ textAlign: "center", mb: 6 }}>
-            <Box
+            <Typography
+              variant="h2"
+              component="h2"
               sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                fontWeight: 700,
+                color: theme.palette.primary.main,
                 mb: 2,
               }}
             >
-              <GroupsIcon
-                sx={{
-                  color: theme.palette.secondary.main,
-                  mr: 2,
-                  fontSize: 30,
-                }}
-              />
-              <Typography
-                variant="h2"
-                component="h2"
-                sx={{
-                  fontWeight: 700,
-                  color: theme.palette.primary.main,
-                }}
-              >
-                Notre Équipe
-              </Typography>
-            </Box>
-
-            <Divider
-              sx={{
-                mb: 3,
-                mx: "auto",
-                width: 80,
-                height: 3,
-                backgroundColor: theme.palette.secondary.main,
-              }}
-            />
+              Mes valeurs pour t'accompagner
+            </Typography>
 
             <Typography
               variant="h5"
               sx={{
-                maxWidth: 700,
+                maxWidth: 720,
                 mx: "auto",
                 color: theme.palette.text.secondary,
-                mb: 5,
               }}
             >
-              Des professionnels passionnés à votre service
+              Des repères constants au service de décisions éclairées.
             </Typography>
           </Box>
 
           <Grid container spacing={4}>
-            {teamMembers.map((member) => (
-              <Grid item xs={12} sm={6} md={3} key={member.id}>
+            {values.map((value) => (
+              <Grid item xs={12} md={4} key={value.title}>
                 <Card
                   sx={{
                     height: "100%",
                     display: "flex",
                     flexDirection: "column",
                     borderRadius: 2,
-                    overflow: "hidden",
                     boxShadow: "0 8px 24px rgba(0,0,0,0.05)",
                     transition: "all 0.3s ease",
                     "&:hover": {
@@ -526,41 +310,133 @@ const AboutPage = () => {
                     },
                   }}
                 >
-                  <CardMedia
-                    component="img"
-                    height="240"
-                    image={member.photoUrl}
-                    alt={member.name}
-                  />
-                  <CardContent sx={{ p: 3, flexGrow: 1 }}>
+                  <CardContent sx={{ p: 4, flexGrow: 1 }}>
                     <Typography
-                      variant="h5"
+                      variant="h4"
                       component="h3"
                       sx={{
                         fontWeight: 600,
-                        mb: 1,
-                      }}
-                    >
-                      {member.name}
-                    </Typography>
-
-                    <Typography
-                      variant="subtitle1"
-                      sx={{
                         mb: 2,
                         color: theme.palette.primary.main,
-                        fontWeight: 500,
                       }}
                     >
-                      {member.position}
+                      {value.title}
                     </Typography>
 
-                    <Typography variant="body2">{member.bio}</Typography>
+                    <Typography variant="body1" sx={{ lineHeight: 1.6 }}>
+                      {value.description}
+                    </Typography>
+
+                    <List sx={{ mt: 3 }}>
+                      <ListItem disableGutters sx={{ alignItems: "flex-start" }}>
+                        <ListItemIcon sx={{ mt: "2px" }}>
+                          <CheckCircleIcon
+                            sx={{ color: theme.palette.secondary.main }}
+                          />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={
+                            value.title === "Comprendre"
+                              ? "Décryptage pédagogique des enjeux"
+                              : value.title === "Protéger"
+                              ? "Sélection libre des partenaires"
+                              : "Plans d'action évolutifs"
+                          }
+                        />
+                      </ListItem>
+                      <ListItem disableGutters sx={{ alignItems: "flex-start" }}>
+                        <ListItemIcon sx={{ mt: "2px" }}>
+                          <CheckCircleIcon
+                            sx={{ color: theme.palette.secondary.main }}
+                          />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={
+                            value.title === "Comprendre"
+                              ? "Documents personnalisés et synthétiques"
+                              : value.title === "Protéger"
+                              ? "Focus sur les personnes et actifs clés"
+                              : "Suivi programmé pour garder le cap"
+                          }
+                        />
+                      </ListItem>
+                    </List>
                   </CardContent>
                 </Card>
               </Grid>
             ))}
           </Grid>
+        </Container>
+      </Box>
+
+      {/* Section réseau */}
+      <Box sx={{ py: 8, bgcolor: "#f8f9fa" }}>
+        <Container maxWidth="md">
+          <Card
+            sx={{
+              borderRadius: 3,
+              boxShadow: "0 12px 32px rgba(0,0,0,0.08)",
+            }}
+          >
+            <CardContent sx={{ p: { xs: 3, md: 5 } }}>
+              <Typography
+                variant="h4"
+                sx={{
+                  fontWeight: 700,
+                  color: theme.palette.primary.main,
+                  mb: 2,
+                }}
+              >
+                Un réseau solide pour servir tes intérêts
+              </Typography>
+
+              <Typography variant="body1" sx={{ lineHeight: 1.6 }}>
+                L'ABC DU PATRIMOINE s'appuie sur le réseau national 360 Courtage pour élargir ton champ des possibles : solutions d'assurance innovantes, partenaires de confiance et outils digitaux performants. Cette force collective nourrit un accompagnement sur mesure, centré sur tes priorités.
+              </Typography>
+            </CardContent>
+          </Card>
+        </Container>
+      </Box>
+
+      {/* Section CTA */}
+      <Box sx={{ py: 8 }}>
+        <Container maxWidth="lg" sx={{ textAlign: "center" }}>
+          <Typography
+            variant="h3"
+            sx={{
+              fontWeight: 700,
+              color: theme.palette.primary.main,
+              mb: 2,
+            }}
+          >
+            Envie d'aller plus loin ?
+          </Typography>
+          <Typography
+            variant="h6"
+            sx={{
+              maxWidth: 640,
+              mx: "auto",
+              color: theme.palette.text.secondary,
+              mb: 4,
+            }}
+          >
+            Faisons le point sur ta situation et dessinons ensemble la prochaine étape de ton patrimoine.
+          </Typography>
+
+          <Button
+            variant="contained"
+            color="secondary"
+            component={RouterLink}
+            to="/services"
+            sx={{
+              borderRadius: "30px",
+              px: 4,
+              py: 1.5,
+              fontWeight: 600,
+            }}
+          >
+            Découvrir mes accompagnements
+          </Button>
         </Container>
       </Box>
     </Box>

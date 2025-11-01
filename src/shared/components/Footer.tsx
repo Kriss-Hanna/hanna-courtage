@@ -37,12 +37,11 @@ const Footer: React.FC<FooterProps> = ({ showContactInfo = true }) => {
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6} md={3}>
             <Typography variant="h6" gutterBottom fontWeight="bold">
-              HANNA COURTAGE
+              L'ABC DU PATRIMOINE
             </Typography>
             <Typography variant="body2" sx={{ mb: 2, opacity: 0.8 }}>
-              Votre partenaire de confiance pour toutes vos assurances. Nous
-              vous accompagnons dans la recherche des meilleures solutions
-              adaptées à vos besoins.
+              Comprendre, protéger, construire : j'accompagne tes décisions
+              patrimoniales avec pédagogie, transparence et indépendance.
             </Typography>
             <Box sx={{ mt: 2 }}>
               <IconButton
@@ -137,7 +136,7 @@ const Footer: React.FC<FooterProps> = ({ showContactInfo = true }) => {
               >
                 Contact
               </Link>
-              <Link
+              {/* <Link
                 component={RouterLink}
                 to="/admin"
                 color="inherit"
@@ -148,6 +147,18 @@ const Footer: React.FC<FooterProps> = ({ showContactInfo = true }) => {
                 }}
               >
                 Admin
+              </Link> */}
+              <Link
+                component={RouterLink}
+                to="/faq"
+                color="inherit"
+                sx={{
+                  display: "block",
+                  textDecoration: "none",
+                  "&:hover": { color: theme.palette.secondary.main },
+                }}
+              >
+                FAQ
               </Link>
             </Box>
           </Grid>
@@ -158,7 +169,7 @@ const Footer: React.FC<FooterProps> = ({ showContactInfo = true }) => {
             </Typography>
             <Link
               component={RouterLink}
-              to="/services#assurance-auto"
+              to="/services#assurances-gestion"
               color="inherit"
               sx={{
                 display: "block",
@@ -167,11 +178,11 @@ const Footer: React.FC<FooterProps> = ({ showContactInfo = true }) => {
                 "&:hover": { color: theme.palette.secondary.main },
               }}
             >
-              Assurance Auto
+              Assurances & Gestion de patrimoine
             </Link>
             <Link
               component={RouterLink}
-              to="/services#assurance-habitation"
+              to="/services#coaching-financier"
               color="inherit"
               sx={{
                 display: "block",
@@ -180,11 +191,11 @@ const Footer: React.FC<FooterProps> = ({ showContactInfo = true }) => {
                 "&:hover": { color: theme.palette.secondary.main },
               }}
             >
-              Assurance Habitation
+              Coaching financier
             </Link>
             <Link
               component={RouterLink}
-              to="/services#assurance-sante"
+              to="/services#vision-patrimoniale"
               color="inherit"
               sx={{
                 display: "block",
@@ -193,19 +204,7 @@ const Footer: React.FC<FooterProps> = ({ showContactInfo = true }) => {
                 "&:hover": { color: theme.palette.secondary.main },
               }}
             >
-              Assurance Santé
-            </Link>
-            <Link
-              component={RouterLink}
-              to="/services#assurance-professionnelle"
-              color="inherit"
-              sx={{
-                display: "block",
-                textDecoration: "none",
-                "&:hover": { color: theme.palette.secondary.main },
-              }}
-            >
-              Assurance Professionnelle
+              Vision globale du patrimoine
             </Link>
           </Grid>
 
@@ -219,22 +218,20 @@ const Footer: React.FC<FooterProps> = ({ showContactInfo = true }) => {
                   sx={{ mr: 1, color: theme.palette.secondary.main }}
                 />
                 <Typography variant="body2">
-                  123 Avenue des Assurances, 75000 Paris
+                  [Adresse professionnelle à compléter]
                 </Typography>
               </Box>
               <Box sx={{ display: "flex", mb: 2 }}>
                 <PhoneIcon
                   sx={{ mr: 1, color: theme.palette.secondary.main }}
                 />
-                <Typography variant="body2">+33 1 23 45 67 89</Typography>
+                <Typography variant="body2">[Numéro à compléter]</Typography>
               </Box>
               <Box sx={{ display: "flex" }}>
                 <EmailIcon
                   sx={{ mr: 1, color: theme.palette.secondary.main }}
                 />
-                <Typography variant="body2">
-                  contact@hanna-courtage.fr
-                </Typography>
+                <Typography variant="body2">[Email à compléter]</Typography>
               </Box>
             </Grid>
           )}
@@ -251,7 +248,8 @@ const Footer: React.FC<FooterProps> = ({ showContactInfo = true }) => {
           }}
         >
           <Typography variant="body2" sx={{ opacity: 0.8 }}>
-            © {currentYear} Hanna Courtage. Tous droits réservés.
+            © {currentYear} L'ABC DU PATRIMOINE — Françoise HANNA. Tous droits
+            réservés.
           </Typography>
           <Box>
             <Link
@@ -284,6 +282,14 @@ const Footer: React.FC<FooterProps> = ({ showContactInfo = true }) => {
             </Link>
           </Box>
         </Box>
+
+        <Typography
+          variant="caption"
+          sx={{ display: "block", mt: 2, opacity: 0.7 }}
+        >
+          Courtier en assurances membre du réseau 360 Courtage — ORIAS n° [à
+          compléter] — RCP [Assureur / police à compléter]
+        </Typography>
       </Container>
     </Box>
   );

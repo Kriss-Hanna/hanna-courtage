@@ -9,6 +9,8 @@ import {
   Alert,
   CircularProgress,
   useTheme,
+  FormControlLabel,
+  Checkbox,
 } from "@mui/material";
 import { ContactFormProps } from "../../core/interfaces";
 import { ContactFormData } from "../../core/types";
@@ -26,6 +28,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
     phone: "",
     message: "",
     serviceInterest: "",
+    remoteMeeting: false,
   });
   const [formErrors, setFormErrors] = useState<
     Partial<Record<keyof ContactFormData, string>>
@@ -33,10 +36,15 @@ const ContactForm: React.FC<ContactFormProps> = ({
   const [success, setSuccess] = useState(false);
 
   const serviceOptions = [
-    { value: "assurance-auto", label: "Assurance Auto" },
-    { value: "assurance-habitation", label: "Assurance Habitation" },
-    { value: "assurance-sante", label: "Assurance Santé" },
-    { value: "assurance-professionnelle", label: "Assurance Professionnelle" },
+    {
+      value: "assurances-gestion",
+      label: "Assurances & Gestion de patrimoine",
+    },
+    { value: "coaching-financier", label: "Coaching financier" },
+    {
+      value: "vision-patrimoniale",
+      label: "Vision globale du patrimoine",
+    },
     { value: "autre", label: "Autre" },
   ];
 
@@ -103,6 +111,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
         phone: "",
         message: "",
         serviceInterest: "",
+        remoteMeeting: false,
       });
 
       // Masquer le message de succès après 5 secondes
@@ -230,6 +239,24 @@ const ContactForm: React.FC<ContactFormProps> = ({
               </MenuItem>
             ))}
           </TextField>
+        </Grid>
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                color="primary"
+                checked={formData.remoteMeeting || false}
+                onChange={(event) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    remoteMeeting: event.target.checked,
+                  }))
+                }
+              />
+            }
+            label="Je souhaite un rendez-vous en visio"
+            sx={{ mb: 1 }}
+          />
         </Grid>
         <Grid item xs={12}>
           <TextField

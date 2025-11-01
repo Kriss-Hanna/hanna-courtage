@@ -9,10 +9,14 @@ import {
   Avatar,
   Alert,
   useTheme,
+  CircularProgress,
 } from "@mui/material";
 import { LockOutlined as LockOutlinedIcon } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { AdminLoginData } from "../../core/types";
+import { createClient } from "@supabase/supabase-js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AdminLoginPage: React.FC = () => {
   const theme = useTheme();
@@ -23,6 +27,11 @@ const AdminLoginPage: React.FC = () => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const supabase = createClient(
+    process.env.REACT_APP_SUPABASE_URL!,
+    process.env.REACT_APP_SUPABASE_ANON_KEY!
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -38,21 +47,27 @@ const AdminLoginPage: React.FC = () => {
     setError(null);
 
     try {
-      // Simulation d'une connexion (à remplacer par une vraie API)
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const { error } = await supabase.auth.signInWithPassword({
+        email: formData.email,
+        password: formData.password,
+      });
 
-      // Pour la démo, on accepte n'importe quelle connexion avec un email valide
-      if (!formData.email.includes("@")) {
-        throw new Error("Email invalide");
+      if (error) {
+        toast.error(`Échec de connexion : ${error.message}`, {
+          position: "top-right",
+        });
+        throw new Error(error.message);
       }
 
-      // Stocker une information de connexion dans le localStorage
-      localStorage.setItem("adminLoggedIn", "true");
-
-      // Rediriger vers le dashboard
+      toast.success("Connexion réussie ! Redirection...", {
+        position: "top-right",
+      });
       navigate("/admin/dashboard");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Une erreur est survenue");
+      toast.error("Erreur inattendue lors de la connexion.", {
+        position: "top-right",
+      });
     } finally {
       setLoading(false);
     }
@@ -60,6 +75,7 @@ const AdminLoginPage: React.FC = () => {
 
   return (
     <Container component="main" maxWidth="xs">
+      <ToastContainer />
       <Box
         sx={{
           marginTop: 8,
@@ -130,6 +146,7 @@ const AdminLoginPage: React.FC = () => {
               variant="contained"
               sx={{ mt: 3, mb: 2, py: 1.5 }}
               disabled={loading}
+              startIcon={loading ? <CircularProgress size={24} /> : null}
             >
               {loading ? "Connexion en cours..." : "Se connecter"}
             </Button>

@@ -7,6 +7,9 @@ import ServicesPage from "./features/services/ServicesPage";
 import ContactPage from "./features/contact/ContactPage";
 import AdminLoginPage from "./features/admin/AdminLoginPage";
 import AdminDashboardPage from "./features/admin/AdminDashboardPage";
+import FaqPage from "./features/faq/FaqPage";
+import MentionsLegalesPage from "./features/legal/MentionsLegalesPage";
+import PrivacyPolicyPage from "./features/legal/PrivacyPolicyPage";
 
 function App() {
   return (
@@ -19,6 +22,12 @@ function App() {
           <Route path="about" element={<AboutPage />} />
           <Route path="services" element={<ServicesPage />} />
           <Route path="contact" element={<ContactPage />} />
+          <Route path="faq" element={<FaqPage />} />
+          <Route path="mentions-legales" element={<MentionsLegalesPage />} />
+          <Route
+            path="politique-confidentialite"
+            element={<PrivacyPolicyPage />}
+          />
         </Route>
         {/* Routes d'administration */}
         <Route path="/admin" element={<AdminLayout />}>

@@ -7,6 +7,7 @@ import {
   Card,
   CardContent,
   Divider,
+  Alert,
 } from "@mui/material";
 import {
   Phone as PhoneIcon,
@@ -16,9 +17,13 @@ import {
 } from "@mui/icons-material";
 import ContactForm from "../../shared/components/ContactForm";
 import { ContactFormData } from "../../core/types";
+import { CALENDLY_LINK } from "../../core/config";
+import CalendlyInlineWidget from "../../shared/components/CalendlyInlineWidget";
 
 const ContactPage = () => {
   const theme = useTheme();
+  const calendlyUrl = CALENDLY_LINK;
+  const isCalendlyPlaceholder = calendlyUrl.includes("votre-lien");
 
   const handleSubmit = (data: ContactFormData) => {
     // Ici, vous implémenteriez la logique d'envoi du formulaire
@@ -60,7 +65,7 @@ const ContactPage = () => {
                   fontSize: { xs: "2.5rem", md: "3.5rem" },
                 }}
               >
-                Contactez-nous
+                Parlons de ta situation patrimoniale
               </Typography>
               <Typography
                 variant="h5"
@@ -71,8 +76,7 @@ const ContactPage = () => {
                   lineHeight: 1.5,
                 }}
               >
-                Notre équipe est à votre disposition pour répondre à toutes vos
-                questions
+                Chaque grand projet commence par une conversation. Faisons connaissance pour clarifier tes besoins et tes objectifs.
               </Typography>
             </Grid>
           </Grid>
@@ -110,15 +114,14 @@ const ContactPage = () => {
                   },
                 }}
               >
-                Nos Coordonnées
+                Coordonnées et rendez-vous
               </Typography>
 
               <Typography
                 variant="body1"
                 sx={{ mb: 4, fontSize: "1.1rem", lineHeight: 1.6 }}
               >
-                N'hésitez pas à nous contacter par téléphone, email ou en nous
-                rendant visite dans nos bureaux.
+                Choisis le canal qui te convient le mieux : message, appel, visio ou rencontre en présentiel. Je te réponds rapidement et avec bienveillance.
               </Typography>
             </Box>
 
@@ -157,7 +160,7 @@ const ContactPage = () => {
                           Adresse
                         </Typography>
                         <Typography variant="body1" color="text.secondary">
-                          123 Avenue des Assurances, 75000 Paris
+                          [Adresse professionnelle à compléter]
                         </Typography>
                       </Box>
                     </Box>
@@ -199,7 +202,7 @@ const ContactPage = () => {
                           Téléphone
                         </Typography>
                         <Typography variant="body1" color="text.secondary">
-                          +33 1 23 45 67 89
+                          [Numéro à compléter]
                         </Typography>
                       </Box>
                     </Box>
@@ -241,7 +244,7 @@ const ContactPage = () => {
                           Email
                         </Typography>
                         <Typography variant="body1" color="text.secondary">
-                          contact@hanna-courtage.fr
+                          [Email à compléter]
                         </Typography>
                       </Box>
                     </Box>
@@ -288,32 +291,32 @@ const ContactPage = () => {
                     <Divider sx={{ mb: 2 }} />
 
                     <Grid container spacing={1}>
-                      <Grid item xs={6}>
+                      <Grid item xs={7}>
                         <Typography variant="body2" color="text.secondary">
                           Lundi - Vendredi
                         </Typography>
                       </Grid>
-                      <Grid item xs={6}>
+                      <Grid item xs={5}>
                         <Typography variant="body2" align="right">
-                          9h00 - 18h00
+                          9h00 - 18h30
                         </Typography>
                       </Grid>
-                      <Grid item xs={6}>
+                      <Grid item xs={7}>
                         <Typography variant="body2" color="text.secondary">
                           Samedi
                         </Typography>
                       </Grid>
-                      <Grid item xs={6}>
+                      <Grid item xs={5}>
                         <Typography variant="body2" align="right">
-                          9h00 - 12h00
+                          Sur rendez-vous
                         </Typography>
                       </Grid>
-                      <Grid item xs={6}>
+                      <Grid item xs={7}>
                         <Typography variant="body2" color="text.secondary">
                           Dimanche
                         </Typography>
                       </Grid>
-                      <Grid item xs={6}>
+                      <Grid item xs={5}>
                         <Typography variant="body2" align="right">
                           Fermé
                         </Typography>
@@ -323,9 +326,72 @@ const ContactPage = () => {
                 </Card>
               </Grid>
             </Grid>
+
+            <Card
+              sx={{
+                mt: 3,
+                borderRadius: 2,
+                boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+                backgroundColor: `${theme.palette.secondary.main}10`,
+              }}
+            >
+              <CardContent sx={{ p: 3 }}>
+                <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
+                  Premier échange offert
+                </Typography>
+                <Typography variant="body2" sx={{ lineHeight: 1.6 }}>
+                  Le premier rendez-vous est gratuit et sans engagement. Nous pouvons nous rencontrer en visio ou en présentiel selon tes disponibilités.
+                </Typography>
+              </CardContent>
+            </Card>
           </Grid>
         </Grid>
       </Container>
+
+      <Box
+        id="calendly"
+        sx={{
+          py: 8,
+          backgroundColor: "#f8f9fa",
+        }}
+      >
+        <Container maxWidth="md">
+          <Typography
+            variant="h2"
+            component="h2"
+            sx={{
+              fontWeight: 700,
+              color: theme.palette.primary.main,
+              textAlign: "center",
+              mb: 3,
+            }}
+          >
+            Réserver un créneau en ligne
+          </Typography>
+
+          <Typography
+            variant="body1"
+            sx={{
+              textAlign: "center",
+              maxWidth: 640,
+              mx: "auto",
+              color: theme.palette.text.secondary,
+              mb: 4,
+              lineHeight: 1.6,
+            }}
+          >
+            Choisis le créneau qui te convient pour un échange en visio ou en présentiel. Une confirmation te parviendra immédiatement après la réservation.
+          </Typography>
+
+          {isCalendlyPlaceholder ? (
+            <Alert severity="info" sx={{ mb: 4 }}>
+              Renseigne ton lien Calendly dans <code>src/core/config.ts</code> pour activer la prise de rendez-vous en ligne.
+            </Alert>
+          ) : (
+            <CalendlyInlineWidget url={calendlyUrl} minHeight={780} />
+          )}
+        </Container>
+      </Box>
 
       {/* Carte Google Maps */}
       <Box sx={{ height: "400px", width: "100%", mt: 4 }}>

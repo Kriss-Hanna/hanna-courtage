@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Container,
@@ -13,85 +14,52 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import {
-  DirectionsCar as CarIcon,
-  Home as HomeIcon,
-  HealthAndSafety as HealthIcon,
-  Business as BusinessIcon,
-  Check as CheckIcon,
-  ArrowForward as ArrowForwardIcon,
-} from "@mui/icons-material";
+import { Check as CheckIcon, ArrowForward as ArrowForwardIcon } from "@mui/icons-material";
 import { Link as RouterLink } from "react-router-dom";
 
 const ServicesPage = () => {
   const theme = useTheme();
 
-  // Données des services
-  const services = [
+  const patrimonySolutions = [
     {
-      id: "assurance-auto",
-      title: "Assurance Auto",
-      description:
-        "Protégez votre véhicule avec nos offres d'assurance auto adaptées à vos besoins et à votre budget.",
-      icon: <CarIcon sx={{ fontSize: 40 }} />,
-      features: [
-        "Responsabilité civile",
-        "Garantie tous risques",
-        "Protection du conducteur",
-        "Assistance 24/7",
-        "Véhicule de remplacement",
-        "Protection juridique",
+      title: "Assurances de personnes",
+      items: [
+        "Santé, prévoyance, décès et dépendance",
+        "Maintien de revenu pour indépendants et dirigeants",
+        "Protection familiale complète et évolutive",
       ],
-      image: "/service-auto.jpg",
     },
     {
-      id: "assurance-habitation",
-      title: "Assurance Habitation",
-      description:
-        "Sécurisez votre logement et vos biens avec nos solutions d'assurance habitation complètes.",
-      icon: <HomeIcon sx={{ fontSize: 40 }} />,
-      features: [
-        "Garantie dégâts des eaux",
-        "Protection contre l'incendie",
-        "Couverture vol et vandalisme",
-        "Responsabilité civile",
-        "Protection juridique",
-        "Assistance d'urgence 24/7",
+      title: "Épargne & Retraite",
+      items: [
+        "Assurance-vie, PER et enveloppes projets",
+        "Stratégies de retraite anticipée ou progressive",
+        "Optimisation fiscale suivie dans le temps",
       ],
-      image: "/service-habitation.jpg",
     },
     {
-      id: "assurance-sante",
-      title: "Assurance Santé",
-      description:
-        "Prenez soin de votre santé avec nos offres de complémentaire santé adaptées à vos besoins.",
-      icon: <HealthIcon sx={{ fontSize: 40 }} />,
-      features: [
-        "Remboursement des frais médicaux",
-        "Couverture hospitalisation",
-        "Prise en charge optique",
-        "Soins dentaires",
-        "Médecine alternative",
-        "Téléconsultation médicale",
+      title: "Transmission & Succession",
+      items: [
+        "Démembrement, donation et clause bénéficiaire",
+        "Organisation de la transmission patrimoniale",
+        "Accompagnement familial pour une transition sereine",
       ],
-      image: "/service-sante.jpg",
     },
     {
-      id: "assurance-professionnelle",
-      title: "Assurance Professionnelle",
-      description:
-        "Protégez votre activité professionnelle avec nos solutions d'assurance dédiées aux entreprises.",
-      icon: <BusinessIcon sx={{ fontSize: 40 }} />,
-      features: [
-        "Responsabilité civile professionnelle",
-        "Protection des locaux",
-        "Assurance multirisque",
-        "Protection juridique",
-        "Couverture perte d'exploitation",
-        "Cyber-assurance",
+      title: "Immobilier & défiscalisation",
+      items: [
+        "Étude des dispositifs adaptés (Pinel, LMNP, etc.)",
+        "Accompagnement à l'investissement locatif",
+        "Pilotage des actifs immobiliers dans la durée",
       ],
-      image: "/service-pro.jpg",
     },
+  ];
+
+  const coachingHighlights = [
+    "Bilan personnalisé pour comprendre ta situation et identifier tes priorités",
+    "Plan d'action concret avec outils simples, budgets et objectifs réalistes",
+    "Suivi humain, motivation et ajustements sur 1 à 3 mois",
+    "Séances individuelles en visio ou en présentiel, sans jugement",
   ];
 
   return (
@@ -118,7 +86,7 @@ const ServicesPage = () => {
       >
         <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
           <Grid container spacing={4} alignItems="center">
-            <Grid item xs={12} md={7}>
+            <Grid item xs={12} md={8}>
               <Typography
                 variant="h1"
                 component="h1"
@@ -128,7 +96,7 @@ const ServicesPage = () => {
                   fontSize: { xs: "2.5rem", md: "3.5rem" },
                 }}
               >
-                Nos Services d'Assurance
+                Protéger, valoriser et transmettre ton patrimoine
               </Typography>
               <Typography
                 variant="h5"
@@ -139,233 +107,308 @@ const ServicesPage = () => {
                   lineHeight: 1.5,
                 }}
               >
-                Des solutions adaptées à tous vos besoins d'assurance personnels
-                et professionnels
+                Des solutions indépendantes pour sécuriser le présent, préparer l'avenir et accompagner chaque étape de ton parcours financier.
               </Typography>
             </Grid>
           </Grid>
         </Container>
       </Box>
 
-      {/* Introduction */}
-      <Container maxWidth="lg" sx={{ py: 8 }}>
-        <Grid container spacing={6} alignItems="center">
-          <Grid item xs={12} md={6}>
-            <Typography
-              variant="h2"
-              component="h2"
-              sx={{
-                fontWeight: 700,
-                mb: 3,
-                color: theme.palette.primary.main,
-                position: "relative",
-                "&::after": {
-                  content: '""',
-                  position: "absolute",
-                  bottom: -10,
-                  left: 0,
-                  width: 80,
-                  height: 3,
-                  backgroundColor: theme.palette.secondary.main,
-                  borderRadius: 1,
-                },
-              }}
-            >
-              Des assurances sur mesure
-            </Typography>
-
-            <Typography
-              variant="body1"
-              sx={{ mb: 4, fontSize: "1.1rem", lineHeight: 1.6 }}
-            >
-              Chez Hanna Courtage, nous comprenons que chaque client a des
-              besoins spécifiques en matière d'assurance. C'est pourquoi nous
-              proposons une gamme complète de solutions personnalisées pour vous
-              offrir la meilleure protection possible.
-            </Typography>
-
-            <Typography
-              variant="body1"
-              sx={{ mb: 4, fontSize: "1.1rem", lineHeight: 1.6 }}
-            >
-              Notre équipe d'experts analyse vos besoins et compare les offres
-              des plus grandes compagnies d'assurance pour vous proposer les
-              contrats les plus adaptés à votre situation et à votre budget.
-            </Typography>
-
-            <Button
-              variant="contained"
-              color="secondary"
-              component={RouterLink}
-              to="/contact"
-              endIcon={<ArrowForwardIcon />}
-              sx={{
-                borderRadius: "30px",
-                px: 4,
-                py: 1.5,
-                fontWeight: 600,
-              }}
-            >
-              Demander un devis
-            </Button>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Box
-              component="img"
-              src="/services-intro.jpg"
-              alt="Services d'assurance"
-              sx={{
-                width: "100%",
-                height: "auto",
-                borderRadius: 2,
-                boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
-              }}
-            />
-          </Grid>
-        </Grid>
-      </Container>
-
-      {/* Liste des services */}
-      <Box sx={{ bgcolor: "#f8f9fa", py: 8 }}>
+      {/* Section assurances et gestion de patrimoine */}
+      <Box id="assurances-gestion" sx={{ py: 8 }}>
         <Container maxWidth="lg">
-          <Typography
-            variant="h2"
-            component="h2"
-            align="center"
-            sx={{
-              fontWeight: 700,
-              mb: 2,
-              color: theme.palette.primary.main,
-            }}
-          >
-            Nos Solutions d'Assurance
-          </Typography>
-
-          <Typography
-            variant="h5"
-            align="center"
-            sx={{
-              maxWidth: 700,
-              mx: "auto",
-              color: theme.palette.text.secondary,
-              mb: 6,
-            }}
-          >
-            Découvrez notre gamme complète de services
-          </Typography>
-
-          {services.map((service, index) => (
-            <Box
-              key={service.id}
-              id={service.id}
-              sx={{
-                mb: index !== services.length - 1 ? 8 : 0,
-                scrollMarginTop: "100px",
-              }}
-            >
-              <Grid
-                container
-                spacing={6}
-                alignItems="center"
-                direction={index % 2 === 0 ? "row" : "row-reverse"}
+          <Grid container spacing={6} alignItems="center">
+            <Grid item xs={12} md={6}>
+              <Typography
+                variant="h2"
+                component="h2"
+                sx={{
+                  fontWeight: 700,
+                  mb: 3,
+                  color: theme.palette.primary.main,
+                  position: "relative",
+                  "&::after": {
+                    content: '""',
+                    position: "absolute",
+                    bottom: -10,
+                    left: 0,
+                    width: 80,
+                    height: 3,
+                    backgroundColor: theme.palette.secondary.main,
+                    borderRadius: 1,
+                  },
+                }}
               >
-                <Grid item xs={12} md={6}>
-                  <Box
-                    component="img"
-                    src={service.image}
-                    alt={service.title}
-                    sx={{
-                      width: "100%",
-                      height: "auto",
-                      borderRadius: 2,
-                      boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
-                    }}
-                  />
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                    <Box
+                Assurances & Gestion de patrimoine
+              </Typography>
+
+              <Typography
+                variant="body1"
+                sx={{ mb: 3, fontSize: "1.1rem", lineHeight: 1.6 }}
+              >
+                Protéger ton avenir et celui de tes proches, préparer ta retraite, optimiser ton épargne : c'est tout le sens de mon métier de courtière en assurances et conseillère en gestion de patrimoine.
+              </Typography>
+
+              <Typography
+                variant="body1"
+                sx={{ mb: 4, fontSize: "1.1rem", lineHeight: 1.6 }}
+              >
+                Ensemble, nous construisons une stratégie claire, durable et alignée sur tes projets de vie, sans jamais sacrifier la transparence.
+              </Typography>
+
+              <Grid container spacing={3}>
+                {patrimonySolutions.map((solution) => (
+                  <Grid item xs={12} sm={6} key={solution.title}>
+                    <Card
                       sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        width: 70,
-                        height: 70,
-                        borderRadius: "50%",
-                        backgroundColor: `${theme.palette.primary.main}15`,
-                        color: theme.palette.primary.main,
-                        mr: 2,
+                        height: "100%",
+                        borderRadius: 2,
+                        boxShadow: "0 6px 18px rgba(0,0,0,0.06)",
                       }}
                     >
-                      {service.icon}
-                    </Box>
-                    <Typography
-                      variant="h3"
-                      component="h3"
-                      sx={{
-                        fontWeight: 700,
-                        color: theme.palette.primary.main,
-                      }}
-                    >
-                      {service.title}
-                    </Typography>
-                  </Box>
-
-                  <Typography
-                    variant="body1"
-                    sx={{ mb: 3, fontSize: "1.1rem", lineHeight: 1.6 }}
-                  >
-                    {service.description}
-                  </Typography>
-
-                  <Card
-                    sx={{
-                      mb: 3,
-                      borderRadius: 2,
-                      boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
-                    }}
-                  >
-                    <CardContent>
-                      <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
-                        Ce que nous proposons :
-                      </Typography>
-
-                      <List>
-                        {service.features.map((feature, i) => (
-                          <ListItem key={i} disableGutters>
-                            <ListItemIcon sx={{ minWidth: 36 }}>
-                              <CheckIcon
-                                sx={{ color: theme.palette.secondary.main }}
-                              />
-                            </ListItemIcon>
-                            <ListItemText primary={feature} />
-                          </ListItem>
-                        ))}
-                      </List>
-                    </CardContent>
-                  </Card>
-
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    component={RouterLink}
-                    to="/contact"
-                    endIcon={<ArrowForwardIcon />}
-                    sx={{
-                      borderRadius: "30px",
-                      px: 3,
-                      py: 1,
-                      fontWeight: 600,
-                    }}
-                  >
-                    En savoir plus
-                  </Button>
-                </Grid>
+                      <CardContent sx={{ p: 3 }}>
+                        <Typography
+                          variant="h6"
+                          sx={{
+                            fontWeight: 600,
+                            mb: 2,
+                            color: theme.palette.primary.main,
+                          }}
+                        >
+                          {solution.title}
+                        </Typography>
+                        <List dense>
+                          {solution.items.map((item) => (
+                            <ListItem key={item} disableGutters>
+                              <ListItemIcon sx={{ minWidth: 32 }}>
+                                <CheckIcon
+                                  sx={{ color: theme.palette.secondary.main }}
+                                />
+                              </ListItemIcon>
+                              <ListItemText primary={item} />
+                            </ListItem>
+                          ))}
+                        </List>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                ))}
               </Grid>
 
-              {index !== services.length - 1 && <Divider sx={{ mt: 8 }} />}
-            </Box>
-          ))}
+              <Box
+                sx={{
+                  mt: 4,
+                  p: 3,
+                  borderRadius: 2,
+                  backgroundColor: `${theme.palette.secondary.main}15`,
+                  border: `1px solid ${theme.palette.secondary.main}30`,
+                }}
+              >
+                <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
+                  Mon rôle
+                </Typography>
+                <Typography variant="body2" sx={{ lineHeight: 1.6 }}>
+                  Te conseiller avec clarté, transparence et indépendance. Je sélectionne les solutions pour toi, pas pour un réseau.
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Box
+                component="img"
+                src="/services-intro.jpg"
+                alt="Stratégie patrimoniale"
+                sx={{
+                  width: "100%",
+                  height: "auto",
+                  borderRadius: 2,
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+                }}
+              />
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* Section coaching financier */}
+      <Box id="coaching-financier" sx={{ py: 8, bgcolor: "#f8f9fa" }}>
+        <Container maxWidth="lg">
+          <Grid container spacing={6} alignItems="center" direction={{ xs: "column", md: "row-reverse" }}>
+            <Grid item xs={12} md={6}>
+              <Typography
+                variant="h2"
+                component="h2"
+                sx={{
+                  fontWeight: 700,
+                  mb: 3,
+                  color: theme.palette.primary.main,
+                  position: "relative",
+                  "&::after": {
+                    content: '""',
+                    position: "absolute",
+                    bottom: -10,
+                    left: 0,
+                    width: 80,
+                    height: 3,
+                    backgroundColor: theme.palette.secondary.main,
+                    borderRadius: 1,
+                  },
+                }}
+              >
+                Coaching financier
+              </Typography>
+
+              <Typography
+                variant="body1"
+                sx={{ mb: 3, fontSize: "1.1rem", lineHeight: 1.6 }}
+              >
+                Parce que l'argent n'est pas qu'une question de chiffres, je t'aide à en faire un allié de ton équilibre et de tes projets. L'objectif : reprendre la main sur ton budget et tes décisions.
+              </Typography>
+
+              <List>
+                {coachingHighlights.map((item) => (
+                  <ListItem key={item} disableGutters sx={{ alignItems: "flex-start" }}>
+                    <ListItemIcon sx={{ minWidth: 32, mt: "2px" }}>
+                      <CheckIcon sx={{ color: theme.palette.secondary.main }} />
+                    </ListItemIcon>
+                    <ListItemText primary={item} />
+                  </ListItem>
+                ))}
+              </List>
+
+              <Typography variant="body2" sx={{ mt: 2, fontStyle: "italic" }}>
+                Format : séances individuelles (visio ou présentiel), accompagnement sur 1 à 3 mois, toujours à ton rythme.
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Box
+                component="img"
+                src="/services-coaching.jpg"
+                alt="Coaching financier"
+                sx={{
+                  width: "100%",
+                  height: "auto",
+                  borderRadius: 2,
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+                }}
+                onError={(event: React.SyntheticEvent<HTMLImageElement>) => {
+                  event.currentTarget.src = "/services-intro.jpg";
+                }}
+              />
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* Section vision globale */}
+      <Box id="vision-patrimoniale" sx={{ py: 8 }}>
+        <Container maxWidth="lg">
+          <Grid container spacing={6} alignItems="center">
+            <Grid item xs={12} md={6}>
+              <Typography
+                variant="h2"
+                component="h2"
+                sx={{
+                  fontWeight: 700,
+                  mb: 3,
+                  color: theme.palette.primary.main,
+                  position: "relative",
+                  "&::after": {
+                    content: '""',
+                    position: "absolute",
+                    bottom: -10,
+                    left: 0,
+                    width: 80,
+                    height: 3,
+                    backgroundColor: theme.palette.secondary.main,
+                    borderRadius: 1,
+                  },
+                }}
+              >
+                Vision globale du patrimoine
+              </Typography>
+
+              <Typography
+                variant="body1"
+                sx={{ mb: 3, fontSize: "1.1rem", lineHeight: 1.6 }}
+              >
+                Avant toute recommandation, nous réalisons un diagnostic complet de ta situation patrimoniale. Cette vision 360° permet d'aligner ton patrimoine sur tes projets et d'éclairer chaque décision.
+              </Typography>
+
+              <Grid container spacing={3}>
+                {[
+                  "Analyse de la structure patrimoniale actuelle",
+                  "Projection des scénarios et arbitrages possibles",
+                  "Mise en perspective des impacts fiscaux et familiaux",
+                  "Feuille de route priorisée et calendrier de suivi",
+                ].map((item) => (
+                  <Grid item xs={12} sm={6} key={item}>
+                    <Card
+                      sx={{
+                        height: "100%",
+                        borderRadius: 2,
+                        boxShadow: "0 6px 18px rgba(0,0,0,0.06)",
+                      }}
+                    >
+                      <CardContent sx={{ p: 3 }}>
+                        <ListItem disableGutters sx={{ alignItems: "flex-start" }}>
+                          <ListItemIcon sx={{ minWidth: 32, mt: "2px" }}>
+                            <CheckIcon sx={{ color: theme.palette.secondary.main }} />
+                          </ListItemIcon>
+                          <ListItemText primary={item} />
+                        </ListItem>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                ))}
+              </Grid>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Box
+                component="img"
+                src="/vision-patrimoniale.jpg"
+                alt="Vision globale"
+                sx={{
+                  width: "100%",
+                  height: "auto",
+                  borderRadius: 2,
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+                }}
+                onError={(event: React.SyntheticEvent<HTMLImageElement>) => {
+                  event.currentTarget.src = "/services-intro.jpg";
+                }}
+              />
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* Encadré certification */}
+      <Box sx={{ py: 6, bgcolor: "#f8f9fa" }}>
+        <Container maxWidth="md">
+          <Card
+            sx={{
+              borderRadius: 3,
+              boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
+            }}
+          >
+            <CardContent sx={{ p: { xs: 3, md: 5 } }}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  letterSpacing: 1,
+                  mb: 1,
+                  color: theme.palette.secondary.main,
+                }}
+              >
+                Bientôt
+              </Typography>
+              <Typography variant="body1" sx={{ lineHeight: 1.6 }}>
+                En cours de certification AMF, j'élargirai prochainement mes services vers le conseil en investissement financier afin d'accompagner mes clients encore plus globalement.
+              </Typography>
+            </CardContent>
+          </Card>
         </Container>
       </Box>
 
@@ -384,15 +427,14 @@ const ServicesPage = () => {
             component="h2"
             sx={{ fontWeight: 700, mb: 3 }}
           >
-            Besoin d'un conseil personnalisé ?
+            Besoin d'échanger sur ta situation ?
           </Typography>
 
           <Typography
             variant="h6"
             sx={{ mb: 4, opacity: 0.9, fontWeight: 400 }}
           >
-            Nos experts sont à votre disposition pour vous aider à trouver la
-            solution d'assurance idéale pour vos besoins.
+            Réserve un rendez-vous gratuit pour faire le point et repartir avec des premières pistes concrètes.
           </Typography>
 
           <Button
@@ -400,7 +442,7 @@ const ServicesPage = () => {
             color="secondary"
             size="large"
             component={RouterLink}
-            to="/contact"
+            to="/contact#calendly"
             sx={{
               py: 1.5,
               px: 5,
@@ -415,7 +457,7 @@ const ServicesPage = () => {
               transition: "all 0.3s ease",
             }}
           >
-            Contactez-nous
+            Prendre rendez-vous
           </Button>
         </Container>
       </Box>

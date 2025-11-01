@@ -11,10 +11,9 @@ import {
   useTheme,
 } from "@mui/material";
 import {
-  DirectionsCar as CarIcon,
-  Home as HomeIcon,
-  HealthAndSafety as HealthIcon,
-  Business as BusinessIcon,
+  Security as SecurityIcon,
+  SelfImprovement as SelfImprovementIcon,
+  Insights as InsightsIcon,
   ArrowForward as ArrowForwardIcon,
 } from "@mui/icons-material";
 import { Link as RouterLink } from "react-router-dom";
@@ -27,36 +26,28 @@ const HomePage = () => {
   // Données des services
   const services = [
     {
-      id: "assurance-auto",
-      title: "Assurance Auto",
+      id: "assurances-gestion",
+      title: "Assurances & Gestion de patrimoine",
       description:
-        "Protégez votre véhicule avec nos offres d'assurance auto adaptées à vos besoins et à votre budget.",
-      icon: <CarIcon />,
-      linkTo: "/services#assurance-auto",
+        "Protection de la famille, optimisation de l'épargne, préparation de la retraite et transmission sur mesure grâce à une sélection indépendante.",
+      icon: <SecurityIcon />,
+      linkTo: "/services#assurances-gestion",
     },
     {
-      id: "assurance-habitation",
-      title: "Assurance Habitation",
+      id: "coaching-financier",
+      title: "Coaching financier",
       description:
-        "Sécurisez votre logement et vos biens avec nos solutions d'assurance habitation complètes.",
-      icon: <HomeIcon />,
-      linkTo: "/services#assurance-habitation",
+        "Reprenez confiance dans votre budget, structurez votre épargne et retrouvez une relation apaisée à l'argent avec un accompagnement humain.",
+      icon: <SelfImprovementIcon />,
+      linkTo: "/services#coaching-financier",
     },
     {
-      id: "assurance-sante",
-      title: "Assurance Santé",
+      id: "vision-patrimoniale",
+      title: "Vision globale du patrimoine",
       description:
-        "Prenez soin de votre santé avec nos offres de complémentaire santé adaptées à vos besoins.",
-      icon: <HealthIcon />,
-      linkTo: "/services#assurance-sante",
-    },
-    {
-      id: "assurance-professionnelle",
-      title: "Assurance Professionnelle",
-      description:
-        "Protégez votre activité professionnelle avec nos solutions d'assurance dédiées aux entreprises.",
-      icon: <BusinessIcon />,
-      linkTo: "/services#assurance-professionnelle",
+        "Un diagnostic complet pour aligner votre patrimoine sur vos projets de vie et éclairer chaque décision avec clarté.",
+      icon: <InsightsIcon />,
+      linkTo: "/services#vision-patrimoniale",
     },
   ];
 
@@ -64,27 +55,27 @@ const HomePage = () => {
   const testimonials = [
     {
       id: "1",
-      name: "Sophie Martin",
+      name: "Laurence B.",
       content:
-        "Hanna Courtage m'a permis de trouver l'assurance auto parfaite pour mes besoins. Service rapide et conseils personnalisés, je recommande vivement !",
+        "Françoise m'a aidée à clarifier ma retraite et à protéger mes enfants. Son approche est à la fois rassurante et très concrète.",
       rating: 5,
-      date: "15/03/2023",
+      date: "12/06/2024",
     },
     {
       id: "2",
-      name: "Thomas Dubois",
+      name: "Marc D.",
       content:
-        "Excellente expérience avec Hanna Courtage pour mon assurance habitation. Des conseillers à l'écoute et des tarifs compétitifs.",
+        "Grâce à son coaching financier, j'ai retrouvé la maîtrise de mon budget et mis en place une épargne régulière sans stress.",
       rating: 5,
-      date: "22/05/2023",
+      date: "04/02/2024",
     },
     {
       id: "3",
-      name: "Julie Leroy",
+      name: "Alexandra G.",
       content:
-        "Je cherchais une assurance santé adaptée à ma situation familiale. Hanna Courtage m'a proposé plusieurs options et m'a aidé à faire le meilleur choix.",
+        "L'analyse patrimoniale globale a été déterminante pour préparer notre transmission familiale. Un accompagnement précieux.",
       rating: 4,
-      date: "10/07/2023",
+      date: "18/09/2023",
     },
   ];
 
@@ -92,11 +83,13 @@ const HomePage = () => {
     <Box>
       {/* Bannière principale */}
       <Banner
-        title="Votre courtier en assurance de confiance"
-        subtitle="Nous vous accompagnons dans la recherche des meilleures solutions d'assurance adaptées à vos besoins personnels et professionnels."
+        title="L'ABC DU PATRIMOINE — Comprendre, protéger, construire"
+        subtitle="Parce que chaque situation patrimoniale est unique, je t'accompagne à clarifier tes décisions et à protéger les projets qui comptent pour toi."
         backgroundImage="/banner-background.jpg"
-        ctaText="Demander un devis gratuit"
+        ctaText="Faire le point sur ma situation"
         ctaLink="/contact"
+        secondaryCtaText="Prendre rendez-vous"
+        secondaryCtaLink="/contact#calendly"
       />
 
       {/* Section Nos Services */}
@@ -117,24 +110,24 @@ const HomePage = () => {
                 color: theme.palette.primary.main,
               }}
             >
-              Nos Services
+              Trois piliers pour construire ta sérénité financière
             </Typography>
             <Typography
               variant="h5"
               sx={{
-                maxWidth: 700,
+                maxWidth: 720,
                 mx: "auto",
                 color: theme.palette.text.secondary,
                 mb: 2,
               }}
             >
-              Découvrez notre gamme complète de solutions d'assurance
+              Depuis plus de 5 ans, j'accompagne particuliers et professionnels avec une approche indépendante, pédagogique et profondément humaine.
             </Typography>
           </Box>
 
           <Grid container spacing={4}>
             {services.map((service) => (
-              <Grid item xs={12} sm={6} md={3} key={service.id}>
+              <Grid item xs={12} sm={6} md={4} key={service.id}>
                 <ServiceCard
                   title={service.title}
                   description={service.description}
@@ -159,7 +152,7 @@ const HomePage = () => {
                 fontWeight: 600,
               }}
             >
-              Voir tous nos services
+              Découvrir mes accompagnements
             </Button>
           </Box>
         </Container>
@@ -173,7 +166,7 @@ const HomePage = () => {
               <Box
                 component="img"
                 src="/why-choose-us.jpg"
-                alt="Pourquoi nous choisir"
+                alt="Accompagnement patrimonial personnalisé"
                 sx={{
                   width: "100%",
                   height: "auto",
@@ -203,16 +196,14 @@ const HomePage = () => {
                   },
                 }}
               >
-                Pourquoi nous choisir ?
+                Pourquoi choisir L'ABC DU PATRIMOINE ?
               </Typography>
 
               <Typography
                 variant="body1"
                 sx={{ mb: 4, fontSize: "1.1rem", lineHeight: 1.6 }}
               >
-                Chez Hanna Courtage, nous mettons notre expertise à votre
-                service pour vous proposer les meilleures solutions d'assurance
-                adaptées à vos besoins spécifiques.
+                Un accompagnement serein est un accompagnement qui commence par l'écoute. Je prends le temps de comprendre ton histoire, tes projets et tes contraintes pour bâtir une feuille de route lucide et durable.
               </Typography>
 
               <Box sx={{ mb: 2 }}>
@@ -241,11 +232,10 @@ const HomePage = () => {
                   >
                     1
                   </Box>
-                  Expertise et conseil personnalisé
+                  Écoute et pédagogie
                 </Typography>
                 <Typography variant="body1" sx={{ ml: 7 }}>
-                  Notre équipe d'experts vous accompagne dans le choix de vos
-                  assurances avec des conseils adaptés à votre situation.
+                  Je vulgarise chaque solution pour que tu décides en toute autonomie, sans jargon et sans pression.
                 </Typography>
               </Box>
 
@@ -275,12 +265,10 @@ const HomePage = () => {
                   >
                     2
                   </Box>
-                  Comparaison des meilleures offres
+                  Indépendance totale
                 </Typography>
                 <Typography variant="body1" sx={{ ml: 7 }}>
-                  Nous comparons pour vous les offres des plus grandes
-                  compagnies d'assurance pour vous garantir le meilleur rapport
-                  qualité/prix.
+                  Membre du réseau 360 Courtage, je sélectionne librement les partenaires qui servent au mieux tes intérêts, jamais l'inverse.
                 </Typography>
               </Box>
 
@@ -310,11 +298,36 @@ const HomePage = () => {
                   >
                     3
                   </Box>
-                  Suivi et assistance
+                  Transparence et suivi
                 </Typography>
                 <Typography variant="body1" sx={{ ml: 7 }}>
-                  Nous vous accompagnons tout au long de la vie de votre contrat
-                  et vous assistons en cas de sinistre.
+                  Chaque recommandation s'accompagne d'un plan d'action clair et d'un suivi régulier pour ajuster le cap si nécessaire.
+                </Typography>
+              </Box>
+
+              <Box
+                sx={{
+                  mb: 4,
+                  p: 3,
+                  borderRadius: 2,
+                  backgroundColor: `${theme.palette.secondary.main}15`,
+                  border: `1px solid ${theme.palette.secondary.main}40`,
+                }}
+              >
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    fontWeight: 600,
+                    mb: 1,
+                    color: theme.palette.secondary.main,
+                    textTransform: "uppercase",
+                    letterSpacing: 1,
+                  }}
+                >
+                  Bientôt
+                </Typography>
+                <Typography variant="body2" sx={{ lineHeight: 1.6 }}>
+                  En cours de certification AMF, j'élargirai prochainement mes services vers le conseil en investissement financier pour t'offrir un accompagnement encore plus global.
                 </Typography>
               </Box>
 
@@ -330,7 +343,7 @@ const HomePage = () => {
                   fontWeight: 600,
                 }}
               >
-                En savoir plus sur nous
+                Apprendre à me connaître
               </Button>
             </Grid>
           </Grid>
@@ -355,7 +368,7 @@ const HomePage = () => {
                 color: theme.palette.primary.main,
               }}
             >
-              Ce que disent nos clients
+              Ce que disent mes clients
             </Typography>
             <Typography
               variant="h5"
@@ -366,7 +379,7 @@ const HomePage = () => {
                 mb: 2,
               }}
             >
-              Découvrez les témoignages de nos clients satisfaits
+              Des accompagnements sur-mesure qui redonnent confiance et visibilité
             </Typography>
           </Box>
 
@@ -456,15 +469,14 @@ const HomePage = () => {
             component="h2"
             sx={{ fontWeight: 700, mb: 3 }}
           >
-            Prêt à trouver la meilleure assurance ?
+            Prêt à faire le point sur ton patrimoine ?
           </Typography>
 
           <Typography
             variant="h6"
             sx={{ mb: 4, opacity: 0.9, fontWeight: 400 }}
           >
-            Contactez-nous dès aujourd'hui pour obtenir un devis gratuit et
-            personnalisé.
+            Profite d'un premier échange gratuit et sans engagement pour clarifier ta situation.
           </Typography>
 
           <Button
@@ -472,7 +484,7 @@ const HomePage = () => {
             color="secondary"
             size="large"
             component={RouterLink}
-            to="/contact"
+            to="/contact#calendly"
             sx={{
               py: 1.5,
               px: 5,
@@ -487,7 +499,7 @@ const HomePage = () => {
               transition: "all 0.3s ease",
             }}
           >
-            Demander un devis gratuit
+            Réserver une rencontre
           </Button>
         </Container>
       </Box>

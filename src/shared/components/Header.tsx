@@ -38,6 +38,7 @@ const Header: React.FC<HeaderProps> = ({ transparent = false, activePath }) => {
     { name: "Accueil", path: "/" },
     { name: "Services", path: "/services" },
     { name: "À propos", path: "/about" },
+    { name: "FAQ", path: "/faq" },
     { name: "Contact", path: "/contact" },
   ];
 
@@ -86,7 +87,7 @@ const Header: React.FC<HeaderProps> = ({ transparent = false, activePath }) => {
               flexGrow: { xs: 1, md: 0 },
             }}
           >
-            HANNA COURTAGE
+            L'ABC DU PATRIMOINE
           </Typography>
 
           {isMobile ? (
@@ -191,14 +192,14 @@ const Header: React.FC<HeaderProps> = ({ transparent = false, activePath }) => {
               variant="contained"
               color="secondary"
               component={RouterLink}
-              to="/contact"
+              to="/contact#calendly"
               sx={{
                 borderRadius: "20px",
                 px: 3,
                 fontWeight: 600,
               }}
             >
-              Demander un devis
+              Prendre rendez-vous
             </Button>
           </Box>
         </Toolbar>
