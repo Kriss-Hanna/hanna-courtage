@@ -81,7 +81,7 @@ const Footer: React.FC<FooterProps> = ({ showContactInfo = true }) => {
 
           <Grid item xs={12} sm={6} md={3}>
             <Typography variant="h6" gutterBottom fontWeight="bold">
-              Liens Rapides
+              Liens utiles
             </Typography>
             <Box component="nav">
               <Link
@@ -155,10 +155,24 @@ const Footer: React.FC<FooterProps> = ({ showContactInfo = true }) => {
                 sx={{
                   display: "block",
                   textDecoration: "none",
+                  mb: 1.5,
                   "&:hover": { color: theme.palette.secondary.main },
                 }}
               >
                 FAQ
+              </Link>
+              <Link
+                component={RouterLink}
+                to="/mentions-legales"
+                color="inherit"
+                sx={{
+                  display: "block",
+                  mb: 1.5,
+                  textDecoration: "none",
+                  "&:hover": { color: theme.palette.secondary.main },
+                }}
+              >
+                Mentions légales & conformité
               </Link>
             </Box>
           </Grid>
@@ -252,20 +266,6 @@ const Footer: React.FC<FooterProps> = ({ showContactInfo = true }) => {
             réservés.
           </Typography>
           <Box>
-            <Link
-              component={RouterLink}
-              to="/mentions-legales"
-              color="inherit"
-              sx={{
-                mx: 1,
-                fontSize: "0.875rem",
-                opacity: 0.8,
-                textDecoration: "none",
-                "&:hover": { color: theme.palette.secondary.main },
-              }}
-            >
-              Mentions Légales
-            </Link>
             <Link
               component={RouterLink}
               to="/politique-confidentialite"

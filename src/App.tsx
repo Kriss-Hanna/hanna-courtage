@@ -10,10 +10,12 @@ import AdminDashboardPage from "./features/admin/AdminDashboardPage";
 import FaqPage from "./features/faq/FaqPage";
 import MentionsLegalesPage from "./features/legal/MentionsLegalesPage";
 import PrivacyPolicyPage from "./features/legal/PrivacyPolicyPage";
+import ScrollToTop from "./shared/components/ScrollToTop";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainLayout transparentHeader={true} />}>
           <Route index element={<HomePage />} />

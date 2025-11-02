@@ -200,25 +200,8 @@ const ServicesPage = () => {
                   </Grid>
                 ))}
               </Grid>
-
-              <Box
-                sx={{
-                  mt: 4,
-                  p: 3,
-                  borderRadius: 2,
-                  backgroundColor: `${theme.palette.secondary.main}15`,
-                  border: `1px solid ${theme.palette.secondary.main}30`,
-                }}
-              >
-                <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
-                  Mon rôle
-                </Typography>
-                <Typography variant="body2" sx={{ lineHeight: 1.6 }}>
-                  Te conseiller avec clarté, transparence et indépendance. Je
-                  sélectionne les solutions pour toi, pas pour un réseau.
-                </Typography>
-              </Box>
             </Grid>
+
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
@@ -235,6 +218,28 @@ const ServicesPage = () => {
           </Grid>
         </Container>
       </Box>
+
+      <Container maxWidth="lg">
+        <Box
+          sx={{
+            mt: 4,
+            p: 3,
+            borderRadius: 2,
+            backgroundColor: `${theme.palette.secondary.main}15`,
+            border: `1px solid ${theme.palette.secondary.main}30`,
+            mx: "auto",
+            textAlign: "center",
+          }}
+        >
+          <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
+            Mon rôle
+          </Typography>
+          <Typography variant="body2" sx={{ lineHeight: 1.6 }}>
+            Te conseiller avec clarté, transparence et indépendance. Je
+            sélectionne les solutions pour toi, pas pour un réseau.
+          </Typography>
+        </Box>
+      </Container>
 
       {/* Section coaching financier */}
       <Box id="coaching-financier" sx={{ py: 8, bgcolor: "#f8f9fa" }}>
