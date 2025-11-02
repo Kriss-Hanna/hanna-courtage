@@ -14,9 +14,6 @@ import {
 import { LockOutlined as LockOutlinedIcon } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { AdminLoginData } from "../../core/types";
-import { createClient } from "@supabase/supabase-js";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const AdminLoginPage: React.FC = () => {
   const theme = useTheme();
@@ -28,10 +25,11 @@ const AdminLoginPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const supabase = createClient(
-    process.env.REACT_APP_SUPABASE_URL!,
-    process.env.REACT_APP_SUPABASE_ANON_KEY!
-  );
+  // Supabase désactivé temporairement : la configuration est conservée pour usage ultérieur.
+  // const supabase = createClient(
+  //   process.env.REACT_APP_SUPABASE_URL!,
+  //   process.env.REACT_APP_SUPABASE_ANON_KEY!
+  // );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -47,27 +45,18 @@ const AdminLoginPage: React.FC = () => {
     setError(null);
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email: formData.email,
-        password: formData.password,
-      });
+      await new Promise((resolve) => setTimeout(resolve, 800));
 
-      if (error) {
-        toast.error(`Échec de connexion : ${error.message}`, {
-          position: "top-right",
-        });
-        throw new Error(error.message);
+      if (
+        formData.email.trim().toLowerCase() === "admin@example.com" &&
+        formData.password === "password"
+      ) {
+        navigate("/admin/dashboard");
+      } else {
+        throw new Error("Identifiants invalides (mode démo)");
       }
-
-      toast.success("Connexion réussie ! Redirection...", {
-        position: "top-right",
-      });
-      navigate("/admin/dashboard");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Une erreur est survenue");
-      toast.error("Erreur inattendue lors de la connexion.", {
-        position: "top-right",
-      });
     } finally {
       setLoading(false);
     }
@@ -75,7 +64,6 @@ const AdminLoginPage: React.FC = () => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <ToastContainer />
       <Box
         sx={{
           marginTop: 8,
