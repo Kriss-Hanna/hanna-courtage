@@ -247,13 +247,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ formSubmitEmail }) => {
         Contacte-moi
       </Typography>
 
-      {!submitEmail && (
-        <Alert severity="warning" sx={{ mb: 3 }}>
-          Configure l'adresse email de réception via la variable
-          <code> VITE_FORM_SUBMIT_EMAIL </code>.
-        </Alert>
-      )}
-
       {success && (
         <Alert severity="success" sx={{ mb: 3 }}>
           Ton message est bien parti. Je te recontacte rapidement.
