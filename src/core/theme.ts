@@ -1,28 +1,28 @@
 import { createTheme } from '@mui/material/styles';
 
 // Thème personnalisé pour l'application de courtage en assurance
-// Utilisation de couleurs professionnelles et élégantes
+// Palette harmonisée avec la nouvelle identité visuelle turquoise et or
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1a3a6c', // Bleu professionnel
-      light: '#4565a0',
-      dark: '#0c1f3b',
+      main: '#1f8a88', // Turquoise principal
+      light: '#4fb3b0',
+      dark: '#146160',
       contrastText: '#ffffff',
     },
     secondary: {
-      main: '#e67e22', // Orange pour les accents
-      light: '#f39c4d',
-      dark: '#b35900',
-      contrastText: '#ffffff',
+      main: '#f2b544', // Doré pour les accents
+      light: '#ffd980',
+      dark: '#b78316',
+      contrastText: '#2a2a2a',
     },
     background: {
-      default: '#f8f9fa',
+      default: '#fff7ee',
       paper: '#ffffff',
     },
     text: {
-      primary: '#333333',
-      secondary: '#666666',
+      primary: '#2a2a2a',
+      secondary: '#4f5a64',
     },
   },
   typography: {
