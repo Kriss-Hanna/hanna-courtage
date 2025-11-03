@@ -90,7 +90,8 @@ const FaqPage = () => {
               lineHeight: 1.6,
             }}
           >
-            Tu as une question ? Voici les réponses les plus fréquentes pour mieux comprendre ma manière d'accompagner ton patrimoine.
+            Tu as une question ? Voici les réponses les plus fréquentes pour
+            mieux comprendre ma manière d'accompagner ton patrimoine.
           </Typography>
         </Box>
 
@@ -131,8 +132,12 @@ const FaqPage = () => {
           <Typography variant="h6" sx={{ mb: 1 }}>
             Une autre question ?
           </Typography>
-          <Typography variant="body1" sx={{ color: theme.palette.text.secondary }}>
-            Écris-moi via le formulaire de contact : je te répondrai avec plaisir et rapidité.
+          <Typography
+            variant="body1"
+            sx={{ color: theme.palette.text.secondary }}
+          >
+            Écris-moi via le formulaire de contact : je te répondrai avec
+            plaisir et rapidité.
           </Typography>
         </Box>
       </Container>
@@ -141,4 +146,3 @@ const FaqPage = () => {
 };
 
 export default FaqPage;
-

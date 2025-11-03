@@ -1,4 +1,4 @@
-export const CALENDLY_LINK = "https://calendly.com/votre-lien";
+export const CALENDLY_LINK = "https://calendly.com/labcdupatrimoine";
 
 export const FORM_SUBMIT_EMAIL =
   import.meta.env.VITE_FORM_SUBMIT_EMAIL ?? "";

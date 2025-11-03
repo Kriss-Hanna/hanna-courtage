@@ -28,14 +28,21 @@ const CalendlyInlineWidget: React.FC<CalendlyInlineWidgetProps> = ({
   minHeight = 720,
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const resolvedMinHeight =
+    typeof minHeight === "number" ? `${minHeight}px` : minHeight;
 
   useEffect(() => {
     if (!url || !containerRef.current) {
       return;
     }
 
+    const container = containerRef.current;
+    container.style.minHeight = resolvedMinHeight;
+    container.style.height = resolvedMinHeight;
+
     const initWidget = () => {
       if (window.Calendly && containerRef.current) {
+        containerRef.current.innerHTML = "";
         window.Calendly.initInlineWidget({
           url,
           parentElement: containerRef.current,
@@ -45,32 +52,31 @@ const CalendlyInlineWidget: React.FC<CalendlyInlineWidgetProps> = ({
       }
     };
 
-    const existingScript = document.querySelector<HTMLScriptElement>(
+    let script = document.querySelector<HTMLScriptElement>(
       `script[src="${CALENDLY_WIDGET_SCRIPT}"]`
     );
 
-    if (existingScript) {
+    if (script) {
       if (window.Calendly) {
         initWidget();
       } else {
-        existingScript.addEventListener("load", initWidget);
+        script.addEventListener("load", initWidget);
       }
-
-      return () => {
-        existingScript.removeEventListener("load", initWidget);
-      };
+    } else {
+      script = document.createElement("script");
+      script.src = CALENDLY_WIDGET_SCRIPT;
+      script.async = true;
+      script.addEventListener("load", initWidget);
+      document.body.appendChild(script);
     }
 
-    const script = document.createElement("script");
-    script.src = CALENDLY_WIDGET_SCRIPT;
-    script.async = true;
-    script.onload = initWidget;
-    document.body.appendChild(script);
-
     return () => {
-      script.removeEventListener("load", initWidget);
+      script?.removeEventListener("load", initWidget);
+      if (container) {
+        container.innerHTML = "";
+      }
     };
-  }, [url]);
+  }, [url, resolvedMinHeight]);
 
   return (
     <Box
@@ -78,14 +84,18 @@ const CalendlyInlineWidget: React.FC<CalendlyInlineWidgetProps> = ({
       sx={{
         width: "100%",
         minHeight,
+        height: minHeight,
         borderRadius: 2,
         overflow: "hidden",
         boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
         backgroundColor: "white",
+        "& .calendly-inline-widget": {
+          minWidth: "140%",
+          height: "100%",
+        },
       }}
     />
   );
 };
 
 export default CalendlyInlineWidget;
-

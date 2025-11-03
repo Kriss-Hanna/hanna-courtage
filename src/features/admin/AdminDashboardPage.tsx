@@ -141,7 +141,7 @@ const AdminDashboardPage: React.FC = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("adminLoggedIn");
+    // localStorage.removeItem("adminLoggedIn");
     navigate("/admin");
   };
 
@@ -265,7 +265,6 @@ const AdminDashboardPage: React.FC = () => {
           </Table>
         </TableContainer>
       </Paper>
-
 
       <Dialog
         open={openDialog}
